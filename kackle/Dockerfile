@@ -1,24 +1,48 @@
-FROM python:3.9.18-alpine3.18
+FROM --platform=amd64 node:18 as frontend
 
-RUN apk add build-base
 
-RUN apk add postgresql-dev gcc python3-dev musl-dev
+WORKDIR /frontend
 
-ARG FLASK_APP
-ARG FLASK_ENV
-ARG DATABASE_URL
-ARG SCHEMA
-ARG SECRET_KEY
+COPY ./frontend/package.json .
+
+RUN npm install
+
+COPY ./frontend .
+
+RUN npm run build
+
+# ------ python ------
+FROM --platform=amd64 python:3.9
 
 WORKDIR /var/www
 
-COPY requirements.txt .
+RUN pip install psycopg2[binary]
 
-RUN pip install -r requirements.txt
-RUN pip install psycopg2
+# ---- env
+ENV FLASK_APP=app
+ENV FLASK_ENV=production
+ENV SQLALCHEMY_ECHO=True
 
-COPY . .
+ARG SECRET_KEY
+ENV SECRET_KEY=${SECRET_KEY}
 
-RUN flask db upgrade
-RUN flask seed all
-CMD gunicorn app:app
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
+ARG SCHEMA
+ENV SCHEMA=${SCHEMA}
+
+# copy our requirements.txt file into our project/backend folder
+COPY ./backend/requirements.txt ./backend/
+
+# install all the deps for python
+RUN pip install -r ./backend/requirements.txt
+
+COPY ./backend ./backend
+COPY --from=frontend /frontend/dist ./frontend/dist
+COPY ./bin ./bin
+
+
+EXPOSE 8000
+
+CMD ["bash", "./bin/start.sh"]
