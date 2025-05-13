@@ -21,9 +21,9 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(14))
 
     # relationships one to many
-    servers = db.relationship("User", back_populates="servers")
-    channels = db.relationship("User", back_populates="channels")
-    channel_messages = db.relationship("User", back_populates="channel_messages")
+    servers = db.relationship("Server", back_populates="user")
+    channels = db.relationship("Channel", back_populates="user")
+    # channel_messages = db.relationship("User", back_populates="channel_messages")
 
     @property
     def password(self):

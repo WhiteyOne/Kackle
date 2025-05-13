@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
-    demo = Server(name="Indostructable", private=True)
+    demo = Server(name="Indostructable", private=True, user_id=1)
     server_1 = Server(name="Fred_Myers", private=True, user_id=2)
     server_2 = Server(name="Mark 1", private=True, user_id=2)
     server_3 = Server(name="Jared", private=False, user_id=1)

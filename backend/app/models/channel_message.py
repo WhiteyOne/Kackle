@@ -13,7 +13,7 @@ class Channel_Message(db.Model, UserMixin):
     body = db.Column(db.String(300), nullable=False)
     channel_id = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, db.Foreignkey(add_prefix_for_prod("channel_message.id")), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("channel_messages.id")), nullable=False)
 
  
     def to_dict(self):

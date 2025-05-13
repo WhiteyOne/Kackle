@@ -14,10 +14,11 @@ class Server(db.Model, UserMixin):
     name = db.Column(db.String(30), nullable=False, unique=True)
     private = db.Column(db.Boolean, nullable=False)
     admin = db.Column(ARRAY(db.String))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     # server to user
-    user_id = db.Column(
-        db.Integer, db.Foreignkey(add_prefix_for_prod("user.id")), nullable=False
-    )
+
+    # chan_serv = db.relationship("Channel", back_populates="channel")
+
     # user to server
     user = db.relationship("User", back_populates="servers")
 

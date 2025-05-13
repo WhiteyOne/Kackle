@@ -11,11 +11,11 @@ class Channel_Message_Reaction(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     message_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, db.Foreignkey("channel_message.id"), nullable=False)
+    # user_id = db.Column(db.Integer, nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey("channel_message.id"), nullable=False)
     user_id = db.Column(
         db.Integer,
-        db.Foreignkey(add_prefix_for_prod("channel_message.id")),
+        db.ForeignKey(add_prefix_for_prod("channel_messages.id")),
         nullable=False,
     )
 
