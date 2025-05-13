@@ -14,13 +14,23 @@ class Server(db.Model, UserMixin):
     name = db.Column(db.String(30), nullable=False, unique=True)
     private = db.Column(db.Boolean, nullable=False)
     admin = db.Column(ARRAY(db.String))
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    # server to user
-
-    # chan_serv = db.relationship("Channel", back_populates="channel")
-
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("users.id")),
+        nullable=False,
+    )
     # user to server
-    user = db.relationship("User", back_populates="servers")
+    user = db.relationship(
+        "User", back_populates="servers", cascade="all, delete", passive_deletes=True
+    )
+
+    # channels to server
+    chan_serv = db.relationship(
+        "Channel",
+        back_populates="server_chan",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
 
     def to_dict(self):
         return {

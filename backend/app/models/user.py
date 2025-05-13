@@ -21,9 +21,30 @@ class User(db.Model, UserMixin):
     phone = db.Column(db.String(14))
 
     # relationships one to many
-    servers = db.relationship("Server", back_populates="user")
-    channels = db.relationship("Channel", back_populates="user")
-    # channel_messages = db.relationship("User", back_populates="channel_messages")
+    servers = db.relationship(
+        "Server",
+        back_populates="user",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+    channels = db.relationship(
+        "Channel",
+        back_populates="user_chan",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+    channel_messages = db.relationship(
+        "Channel_Message",
+        back_populates="user_mess",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+    channel_reactions = db.relationship(
+        "Channel_Message_Reaction",
+        back_populates="user_mess_react",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
 
     @property
     def password(self):

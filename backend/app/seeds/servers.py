@@ -4,30 +4,30 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
-    demo = Server(name="Indostructable", private=True, user_id=1)
-    server_1 = Server(name="Fred_Myers", private=True, user_id=2)
-    server_2 = Server(name="Mark 1", private=True, user_id=2)
-    server_3 = Server(name="Jared", private=False, user_id=1)
-    server_4 = Server(name="Food", private=False, user_id=3)
-    server_5 = Server(name="Real Time Updates", private=True, user_id=3)
-    server_6 = Server(name="Canters", private=True, user_id=2)
-    server_7 = Server(name="Horses", private=True, user_id=1)
-    server_8 = Server(name="To-Do", private=False, user_id=2)
-    server_9 = Server(name="Freedom Writers", private=False, user_id=3)
-    server_10 = Server(name="Fungas", private=True, user_id=1)
+    demo = Server(name="Indostructable", private=True, user_id=83)
+    server_1 = Server(name="Fred_Myers", private=True, user_id=84)
+    server_2 = Server(name="Mark 1", private=True, user_id=85)
+    # server_3 = Server(name="Jared", private=False, user_id=1)
+    # server_4 = Server(name="Food", private=False, user_id=3)
+    # server_5 = Server(name="Real Time Updates", private=True, user_id=3)
+    # server_6 = Server(name="Canters", private=True, user_id=2)
+    # server_7 = Server(name="Horses", private=True, user_id=1)
+    # server_8 = Server(name="To-Do", private=False, user_id=2)
+    # server_9 = Server(name="Freedom Writers", private=False, user_id=3)
+    # server_10 = Server(name="Fungas", private=True, user_id=1)
 
     server_list = [
         demo,
         server_1,
         server_2,
-        server_3,
-        server_4,
-        server_5,
-        server_6,
-        server_7,
-        server_8,
-        server_9,
-        server_10,
+        # server_3,
+        # server_4,
+        # server_5,
+        # server_6,
+        # server_7,
+        # server_8,
+        # server_9,
+        # server_10,
     ]
     for server in server_list:
         db.session.add(server)

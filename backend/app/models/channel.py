@@ -12,13 +12,15 @@ class Channel(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
     public = db.Column(db.Boolean, nullable=False)
-    # server_id = db.Column(
-    #     db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False
-    # )
     user_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
-    user = db.relationship("User", back_populates="channels")
+    server_id = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False
+    )
+    user_chan = db.relationship("User", back_populates="channels")
+    server_chan = db.relationship("Server", back_populates="chan_serv")
+    channel_mess = db.relationship("Channel_Message", back_populates="message_chan")
 
     def to_dict(self):
         return {
