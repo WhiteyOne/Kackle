@@ -5,11 +5,11 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
     channel_1 = Channel(name="Food", public=True, server_id=1, user_id=1)
-    channel_2 = Channel(name="Water", public=False, server_id=2, user_id=1)
-    channel_3 = Channel(name="Camping", public=False, server_id=3, user_id=1)
-    channel_4 = Channel(name="Horses", public=False, server_id=3, user_id=1)
-    channel_5 = Channel(name="Work", public=True, server_id=2, user_id=1)
-    channel_6 = Channel(name="Recovery", public=True, server_id=1, user_id=1)
+    channel_2 = Channel(name="Water", public=False, server_id=1, user_id=3)
+    channel_3 = Channel(name="Camping", public=False, server_id=3, user_id=2)
+    channel_4 = Channel(name="Horses", public=False, server_id=3, user_id=2)
+    channel_5 = Channel(name="Work", public=True, server_id=2, user_id=3)
+    channel_6 = Channel(name="Recovery", public=True, server_id=1, user_id=2)
 
     channel_list = [channel_1, channel_2, channel_3, channel_4, channel_5, channel_6]
 
@@ -24,7 +24,7 @@ def seed_channels():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_users():
+def undo_channel():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;"

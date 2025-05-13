@@ -24,25 +24,25 @@ class User(db.Model, UserMixin):
     servers = db.relationship(
         "Server",
         back_populates="user",
-        cascade="all, delete",
+        cascade="all, delete-orphan",
         passive_deletes=True,
     )
     channels = db.relationship(
         "Channel",
         back_populates="user_chan",
-        cascade="all, delete",
+        cascade="all, delete-orphan",
         passive_deletes=True,
     )
     channel_messages = db.relationship(
         "Channel_Message",
         back_populates="user_mess",
-        cascade="all, delete",
+        cascade="all, delete-orphan",
         passive_deletes=True,
     )
     channel_reactions = db.relationship(
         "Channel_Message_Reaction",
         back_populates="user_mess_react",
-        cascade="all, delete",
+        cascade="all, delete-orphan",
         passive_deletes=True,
     )
 

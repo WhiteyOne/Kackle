@@ -18,9 +18,24 @@ class Channel(db.Model, UserMixin):
     server_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False
     )
-    user_chan = db.relationship("User", back_populates="channels")
-    server_chan = db.relationship("Server", back_populates="chan_serv")
-    channel_mess = db.relationship("Channel_Message", back_populates="message_chan")
+    user_chan = db.relationship(
+        "User",
+        back_populates="channels",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+    server_chan = db.relationship(
+        "Server",
+        back_populates="chan_serv",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+    channel_mess = db.relationship(
+        "Channel_Message",
+        back_populates="message_chan",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
 
     def to_dict(self):
         return {

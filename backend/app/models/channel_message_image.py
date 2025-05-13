@@ -11,7 +11,7 @@ class Channel_Message_Image(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     img_url = db.Column(db.String(300))
-    channel_id = db.Column(
+    message_id = db.Column(
         db.Integer,
         db.ForeignKey(add_prefix_for_prod("channel_messages.id")),
         nullable=False,
