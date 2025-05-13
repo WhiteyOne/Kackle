@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import ARRAY
 
 
 class Server(db.Model, UserMixin):
-    __tablename__ = "server"
+    __tablename__ = "servers"
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
@@ -15,7 +15,9 @@ class Server(db.Model, UserMixin):
     private = db.Column(db.Boolean, nullable=False)
     admin = db.Column(ARRAY(db.String))
     # server to user
-    user_id = db.Column(db.Integer, db.Foreignkey("user.id"), nullable=False)
+    user_id = db.Column(
+        db.Integer, db.Foreignkey(add_prefix_for_prod("user.id")), nullable=False
+    )
     # user to server
     user = db.relationship("User", back_populates="servers")
 

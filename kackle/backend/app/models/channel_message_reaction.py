@@ -13,7 +13,11 @@ class Channel_Message_Reaction(db.Model, UserMixin):
     message_id = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.Foreignkey("channel_message.id"), nullable=False)
-
+    user_id = db.Column(
+        db.Integer,
+        db.Foreignkey(add_prefix_for_prod("channel_message.id")),
+        nullable=False,
+    )
 
     def to_dict(self):
         return {"id": self.id, "message_id": self.message_id, "user_id": self.user_id}
