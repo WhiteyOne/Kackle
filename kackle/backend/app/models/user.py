@@ -4,15 +4,27 @@ from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
+    prefered_name = db.Column(db.String(30))
+    profile_img = db.Column(db.String)
+    about = db.Column(db.String(300))
+    phone = db.Column(db.String(14))
+
+    # relationships one to many
+    servers = db.relationship("Server", back_populates="user")
+    channels = db.relationship("Channels", back_populates="user")
+    channel_messages = db.relationship("Channels_Message", back_populates="user")
+
 
     @property
     def password(self):
@@ -24,10 +36,12 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    @property
+    def check_url(self, profile_img):
+        if self.profile_img:
+            url = self.profile_img.lower()
+            if not (url.endswith(".jpeg") or url.endswith(".png")):
+                raise ValueError("Must End With .png, .jpeg")
 
     def to_dict(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email
-        }
+        return {"id": self.id, "username": self.username, "email": self.email}
