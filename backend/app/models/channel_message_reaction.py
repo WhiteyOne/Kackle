@@ -10,7 +10,7 @@ class Channel_Message_Reaction(db.Model, UserMixin):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    message_id = db.Column(
+    channel_message_id = db.Column(
         db.Integer,
         db.ForeignKey(add_prefix_for_prod("channel_messages.id")),
         nullable=False,

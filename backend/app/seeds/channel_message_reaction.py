@@ -4,9 +4,13 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_channel_message_reaction():
-    demo = Channel_Message_Reaction(channel_id=1, user_id=98)
-    channel_message_reaction_1 = Channel_Message_Reaction(channel_id=1, user_id=99)
-    channel_message_reaction_2 = Channel_Message_Reaction(channel_id=1, user_id=100)
+    demo = Channel_Message_Reaction(channel_message_id=1, user_id=3)
+    channel_message_reaction_1 = Channel_Message_Reaction(
+        channel_message_id=1, user_id=1
+    )
+    channel_message_reaction_2 = Channel_Message_Reaction(
+        channel_message_id=1, user_id=2
+    )
 
     message_list = [demo, channel_message_reaction_1, channel_message_reaction_2]
     for message in message_list:
