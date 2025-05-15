@@ -5,12 +5,14 @@ import "./Navigation.css";
 function Navigation() {
   return (
     <ul>
+       <li>
+        <ProfileButton />
+      </li>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-
       <li>
-        <ProfileButton />
+        <NavLink to="/">Servers</NavLink>
       </li>
     </ul>
   );
