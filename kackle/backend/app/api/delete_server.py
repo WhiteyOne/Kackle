@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import User, db, server
+from app.models import User, db, Server
 from app.forms import LoginForm
 from flask_login import current_user, login_user, login_required
 from api.auth_routes import auth_routes
