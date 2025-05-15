@@ -1,0 +1,27 @@
+<h2>Create a New Server</h2>
+
+<form method="post" action="/create-server">
+    {{form.hidden_tag}}
+    <p>
+        {{form.server_name.label}}
+        {{form.server_name}}
+    </p>
+        
+        {% if form.server_name.errors%}
+        <ul>
+            {% for error in form.server_name.errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <p>
+        {{form.is_private.label}}
+        {{form.is_private}}
+    </p>
+    <p>
+        {{form.submit}}
+    </p>
+
+   
+</form>
