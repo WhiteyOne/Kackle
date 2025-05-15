@@ -1,23 +1,25 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginFormPage from '../components/LoginFormPage';
+import LoginFormPage from '../components/Splash/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import GetAllServers from '../components/Servers/GetAllServers/GetAllServers';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
+     
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
-      },
-      {
-        path: "login",
         element: <LoginFormPage />,
       },
       {
         path: "signup",
         element: <SignupFormPage />,
+      },
+      {
+        path: "/servers",
+        element: <GetAllServers />,
       },
     ],
   },
