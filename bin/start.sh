@@ -1,6 +1,6 @@
 #! bin/bash
 
-cd ./backend
+cd ./backend 
 
 # remove all the seeds - if we seeded before
 flask seed undo

@@ -13,7 +13,7 @@ function OpenModalMenuItem({
     setModalContent(modalComponent);
     if (typeof onItemClick === "function") onItemClick();
   };
-
+ 
   return (
     <li onClick={onClick}>{itemText}</li>
   );

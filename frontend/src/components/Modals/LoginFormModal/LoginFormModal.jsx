@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import "./LoginForm.css";
 
-function LoginFormModal() {
+function LoginFormModal() { 
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -1,4 +1,50 @@
 .profile-dropdown {
   position: absolute;
-  background-color: green;
+  background-color: rgb(136, 240, 136);
+  color: rgb(247, 108, 108);
+  text-shadow: 1px 1px 2px #4d5edc;
+  border-radius: 10%;
+} 
+
+.nav-bar {
+  display: flex;
+  flex-direction: column;
 }
+
+.account-nav {
+  font: blue;
+}
+
+.home-nav {
+  color: rgb(221, 61, 61);
+  text-shadow: 2px 2px 4px #000000;
+}
+.home-nav:hover {
+  background-color: rgb(247, 199, 242);
+}
+
+.server-nav {
+  color: rgb(52, 156, 201);
+  text-shadow: 2px 2px 4px #000000;
+}
+.server-nav:hover {
+  background-color: rgb(190, 247, 218);
+}
+
+.user-button {
+  color: rgb(229, 110, 110);
+  background-color: rgb(190, 212, 118);
+  text-shadow: 1px 2px 2px rgb(43, 100, 104);
+  border-radius: 25%;
+  border: 2px;
+  border-color: brown;
+  box-shadow: 2px 2px 15px blue;
+}
+
+.user-button:hover {
+  background-color: rgb(104, 242, 166);
+}
+/* h1 {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+} */

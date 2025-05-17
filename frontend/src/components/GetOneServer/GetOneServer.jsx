@@ -42,49 +42,44 @@ function GetAllServers() {
 
   return (
 
-    <div>
+    <div className="all-servers-page">
 
-        <div >
-            <div className="h1-div">
-                <h1 className="h1-heading"> 
-                    Servers Here o_O  
+        <div className="nav">
+            <div className="home-icon"> 
+                Home Icon
+            </div>
+            <div className="account-div">
+                Account Icon
+            </div>
+        </div>
+
+        <div className="main-server-content">
+            <div>
+                <h1 className="h1"> 
+                    Ho Why Is You Here o_O
                 </h1>
             </div>
         </div>
 
-        <div className="server-box">
-
-            <div className="row-div1">
-                {/* <h2 className="h2-servers-heading">
-                    Servers
-                </h2>   */}
-                 <div className="server-icons"> 
-                    <p>
-                        Server Icons
-                    </p>
-                    
-                </div>
+        <div className="server-column">
+            <h2>Your Servers</h2>            
+            <div className="server-icon"> 
+                Server Icon
             </div>
-
-            <div className="row-div2">
-                <div className="server-icons"> 
-                     <p>
-                        Server Icons
-                    </p>
-                </div>
-            </div>
-
-            <div className="row-div3">
-                <div className="server-icons"> 
-                     <p>
-                        Server Icons
-                    </p>
-                </div>
-            </div>
-
         </div>
+
+        <div className="channel-column">
+            <h2>Your Channels</h2>
+            <div className="channels">
+                Channels
+            </div>
+        </div>
+
+        
+            <div className="smaller-div">Other Things</div>
         
     </div>
+
   );
 }
 

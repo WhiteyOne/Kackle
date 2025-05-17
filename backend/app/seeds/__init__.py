@@ -17,6 +17,7 @@ from .channel_message_image import (
 )
 from app.models.db import db, environment, SCHEMA
 
+
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup("seed")

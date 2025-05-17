@@ -1,0 +1,73 @@
+
+
+.all-servers-page {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    background-color: rgb(182, 132, 228);
+}
+
+
+.nav {
+    background-color: rgb(41, 202, 84);
+}
+
+.home-icon {
+    background-color: rgb(154, 239, 239);
+}
+
+.account-div {
+    background-color: chocolate;
+}
+
+
+.main-server-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: cornflowerblue;
+    width: fit-content;
+    border-radius: 25%;
+    border-color: blue; 
+    color: white;
+    text-shadow: 2px 2px 4px #5061e6;
+}
+
+.server-column {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height: 300px;
+    width: 150px;
+    background-color: rgb(211, 242, 161);
+    
+}
+.server-icon {
+    max-width: 25px;
+    background-color: blue;
+    border-radius: 25px;
+    
+}
+
+.channel-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    width: 150px;
+    background-color: aqua;
+}
+.channels {
+    flex-direction: column;
+    background-color:chartreuse;
+}
+
+
+.smaller-div {
+    background-color: brown;
+}
+
+
+
+
+
