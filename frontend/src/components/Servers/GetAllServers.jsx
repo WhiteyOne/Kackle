@@ -1,4 +1,4 @@
-import { allServers } from "../../../redux/Thunks/GetAllServers";
+import { getAllServersThunk } from "../../redux/servers";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./GetAllServers.css";
@@ -8,28 +8,20 @@ import { useEffect } from "react";
 
 
 
-function GetAllServers() {
-
+function GetServers() {
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
     // const {pathName} = useLocation();
     const sessionUser = useSelector((state) => state.session.user);
-    const servers = useSelector((state) => state.serversReducer);
-    const serversArray = Object.values(servers||{})
+    const servers = useSelector((state) => state.server);
+    // const serversArray = Object.values(servers||{})
 
-
-    useEffect(
-        function() {
-            
-            if (!serversArray.length) {
-                dispatch(allServers())
-            }
-        },
-
-        [
-            serversArray.length, dispatch
-        ]
-    );
+    useEffect(() => {
+        if (servers.allServers.length === 0){
+            dispatch(getAllServersThunk());
+        }
+    }, [dispatch, servers.allServers.length]);
+       
 
     useEffect(
         function(){
@@ -61,4 +53,4 @@ function GetAllServers() {
   );
 }
 
-export default GetAllServers;
+export default GetServers;
