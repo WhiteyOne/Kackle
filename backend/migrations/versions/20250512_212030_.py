@@ -8,7 +8,7 @@ Create Date: 2025-05-12 21:20:30.959051
 
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
+
 
 import os
 
@@ -46,15 +46,8 @@ def upgrade():
         "servers",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(length=30), nullable=False),
-        sa.Column("private", sa.Boolean(), nullable=False),
-        sa.Column("admin", postgresql.ARRAY(sa.String()), nullable=True),
-        sa.Column("user_id", sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(
-            ["user_id"],
-            ["users.id"],
-        ),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("name"),
+        sa.UniqueConstraint("username"),
     )
 
     op.create_table(
