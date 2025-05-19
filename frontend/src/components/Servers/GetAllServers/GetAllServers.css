@@ -1,0 +1,41 @@
+
+
+.everything {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: blueviolet;
+}
+
+.h1 {
+    background-color: cornflowerblue;
+    width: fit-content;
+    border-radius: 25%;
+    border-color: blue; 
+}
+
+.home-icon {
+    background-color: aqua;
+}
+
+.smaller-div {
+    background-color: brown;
+}
+
+.server-icon {
+    max-width: 25px;
+    background-color: blue;
+    border-radius: 25px;
+}
+
+.channels {
+    flex-direction: column;
+    background-color:chartreuse;
+}
+
+.account-div {
+    background-color: chocolate;
+}
+
+
+
