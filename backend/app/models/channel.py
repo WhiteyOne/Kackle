@@ -11,18 +11,13 @@ class Channel(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
-    public = db.Column(db.Boolean, nullable=False)
     server_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False
     )
-    user_id = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
-    )
+    # many to many
     user_chan = db.relationship(
         "User",
-        back_populates="channels",
-        cascade="all, delete",
-        passive_deletes=True,
+        secondary="users_channels",
     )
     server_chan = db.relationship(
         "Server",
@@ -30,6 +25,7 @@ class Channel(db.Model, UserMixin):
         cascade="all, delete",
         passive_deletes=True,
     )
+    # one to many
     channel_mess = db.relationship(
         "Channel_Message",
         back_populates="message_chan",

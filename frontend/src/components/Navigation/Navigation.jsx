@@ -23,6 +23,7 @@ function Navigation() {
 
       <li>
         <ProfileButton />
+        <NavLink to="/servers">Servers</NavLink>
       </li>
     </ul>
 
