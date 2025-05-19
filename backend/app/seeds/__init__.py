@@ -15,6 +15,8 @@ from .channel_message_image import (
     seed_channel_message_image,
     undo_channel_message_image,
 )
+from .user_server import seed_user_server, undo_user_server
+from .user_channel import seed_user_channel, undo_user_channel
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -32,16 +34,23 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
         undo_servers()
+        undo_user_server()
         undo_channel()
+        undo_user_channel
         undo_channel_messages()
         undo_channel_message_reaction()
         undo_channel_message_image()
+
     seed_users()
     seed_servers()
+    seed_user_server()
     seed_channels()
+    seed_user_channel()
     seed_channel_messages()
     seed_channel_message_image()
     seed_channel_message_reaction()
+    seed
+
     # Add other seed functions here
 
 
@@ -50,7 +59,9 @@ def seed():
 def undo():
     undo_users()
     undo_servers()
+    undo_user_server()
     undo_channel()
+    undo_user_channel()
     undo_channel_messages()
     undo_channel_message_reaction()
     undo_channel_message_image()
