@@ -39,4 +39,5 @@ class Server(db.Model, UserMixin):
             "private": self.private,
             "admin": self.admin,
             "user_id": self.user_id,
+            "channels": [channel.to_dict() for channel in self.chan_serv]
         }

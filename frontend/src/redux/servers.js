@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 // -- ACTION TYPES --
 const GET_ALL_SERVERS = "servers/getAllServers";
-
+// const CREATE_A_SERVER = "servers/createAServer";
 
 
 // -- ACTION CREATOR --
@@ -10,6 +10,11 @@ export const getAllServersAction = (data) => ({
         type: GET_ALL_SERVERS,
         payload: data
 });
+
+// export const createAServerAction = (server) => ({
+//     type: CREATE_A_SERVER,
+//     payload: server,
+// })
 
 
 // -- THUNK ACTION --

@@ -12,7 +12,7 @@ function Navigation() {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/">Servers</NavLink>
+        <NavLink to="/servers">Servers</NavLink>
       </li>
     </ul>
   );

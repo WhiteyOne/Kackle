@@ -1,6 +1,6 @@
 import { getAllServersThunk } from "../../redux/servers";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./GetAllServers.css";
 import { useEffect } from "react";
 // import update button
@@ -11,10 +11,9 @@ import { useEffect } from "react";
 function GetServers() {
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
-    // const {pathName} = useLocation();
     const sessionUser = useSelector((state) => state.session.user);
     const servers = useSelector((state) => state.server);
-    // const serversArray = Object.values(servers||{})
+    const allServers = useSelector(state => state.server.allServers);
 
     useEffect(() => {
         if (servers.allServers.length === 0){
@@ -48,6 +47,16 @@ function GetServers() {
             <div className="channels">Channels</div>
         </div>
         <div className="account-div">Account Icon</div>
+          <h2>Your Servers</h2>
+      <ul>
+        {allServers.map(server => (
+          <li key={server.id} className="server-item">
+             <Link to={`/servers/${server.id}`}>
+              {server.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
 
   );
