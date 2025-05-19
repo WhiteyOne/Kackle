@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, render_template
 from flask_login import login_required, current_user
-from ..models import db, User
+from ..models import db, Server
 from ..forms import CreateServer
 
 server_routes = Blueprint('servers', __name__)
@@ -12,7 +12,7 @@ server_routes = Blueprint('servers', __name__)
 def create_server():
     form = CreateServer()
     if form.validate_on_submit():
-        new_server = Server(name=form.server_name.data, is_private=form.is_private.data, owner_id=current_user.id)
+        new_server = Server(name=form.server_name.data)
         db.session.add(new_server)
         db.session.commit()
 

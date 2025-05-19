@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField
+from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
-from app.models import User
+from ..models import Server
+
 
 def validate_server(form, field):
     #Checking if server already exists and has a name
@@ -18,6 +19,5 @@ def validate_server(form, field):
 
 class CreateServer(FlaskForm):
     server_name = StringField('Server Name', validators=[DataRequired(), validate_server])
-    is_private = BooleanField('Private:', validators=[DataRequired()])
     submit = SubmitField("Submit")
 
