@@ -46,7 +46,7 @@ def upgrade():
         "channels",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(length=30), nullable=False),
-        sa.Column("server_id", sa.Integer(), nullable=True, nullable=False),
+        sa.Column("server_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(
             ["server_id"],
             ["servers.id"],
