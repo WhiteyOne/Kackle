@@ -36,7 +36,7 @@ function GetOneServer() {
             </div>
             <div className="main-server-content">
                 <div>
-                    <h1 className="h1">Ho Why Is You Here o_O</h1>
+                    <h1 className="h1">servers</h1>
                 </div>
             </div>
             <div className="server-column">
