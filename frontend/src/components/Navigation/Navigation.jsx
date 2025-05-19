@@ -2,13 +2,13 @@ import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation() { 
   return (
     <ul>
       <div className="nav-bar">
 
         <li className="account-nav">
-          <ProfileButton />
+          <ProfileButton /> 
         </li>
 
        <li className="home-nav">

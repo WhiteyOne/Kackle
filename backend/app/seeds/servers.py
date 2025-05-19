@@ -18,7 +18,7 @@ def seed_servers():
 
     server_list = [
         demo,
-        server_1,
+        server_1, 
         server_2,
         server_3,
         server_4,

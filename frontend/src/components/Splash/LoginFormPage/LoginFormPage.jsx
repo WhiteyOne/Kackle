@@ -48,7 +48,7 @@ function LoginFormPage() {
         </label>
         {errors.email && <p>{errors.email}</p>}
         <label>
-          Password
+          Password 
           <input
             type="password"
             value={password}

@@ -15,19 +15,20 @@ function GetAllServers() {
     // const {pathName} = useLocation();
     const sessionUser = useSelector((state) => state.session.user);
     const servers = useSelector((state) => state.serversReducer);
+    
     const serversArray = Object.values(servers||{})
 
-
+ 
     useEffect(
         function() {
             if (!serversArray.length) {
                 dispatch(allServers())
             }
         },
+         [serversArray.length, dispatch]
+            
 
-        [
-            serversArray.length, dispatch
-        ]
+       
     );
 
     useEffect(
@@ -35,7 +36,7 @@ function GetAllServers() {
             if (!sessionUser){
                 navigateTo('/')
             }
-        }
+        }, [sessionUser, navigateTo]
     );
 
 
@@ -56,7 +57,7 @@ function GetAllServers() {
         <div className="main-server-content">
             <div>
                 <h1 className="h1"> 
-                    Ho Why Is You Here o_O
+                    Server Page o_O
                 </h1>
             </div>
         </div>
