@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createServer } from "../../../../redux/ThunkReducers/Servers";
 import { useNavigate } from 'react-router-dom';
 import "./CreateServerModal.css"
+import { createAServerThunk, getAllServersThunk } from "../../../../redux/servers";
 
 
 function CreateServerModal({ onClose }) {
+    // hooks
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+    // redux state
     const user = useSelector(state => state.session.user)
+
+    const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
         name: '',
     })
@@ -45,8 +48,8 @@ function CreateServerModal({ onClose }) {
             name: formData.name,
         };
 
-        const newServer = await dispatch(createServer(newServerData))
-        
+        const newServer = await dispatch(createAServerThunk(newServerData))
+
         if (newServer && newServer.errors) {
             setErrors(newServer.errors)
         } else if (newServer && newServer.id) {
