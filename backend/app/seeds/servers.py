@@ -2,6 +2,9 @@ from app.models import db, Server, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
+user_server_lists = []
+
+
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
     demo = Server(name="Indostructable")
@@ -29,8 +32,10 @@ def seed_servers():
         server_9,
         server_10,
     ]
+
     for server in server_list:
         db.session.add(server)
+        user_server_lists.append(server)
     db.session.commit()
 
 

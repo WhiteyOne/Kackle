@@ -1,20 +1,22 @@
-from app.models import db, User_Server, environment, SCHEMA
+from app.models import db, user_server, environment, SCHEMA, Server
 from sqlalchemy.sql import text
+from .users import list_of_users
+from .servers import user_server_lists
+from random import choice
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_user_server():
-    demo = User_Server(user_id=1, server_id=1)
-    demo2 = User_Server(user_id=2, server_id=1)
-    demo3 = User_Server(user_id=3, server_id=1)
-    demo4 = User_Server(user_id=1, server_id=2)
-    demo5 = User_Server(user_id=1, server_id=3)
-    demo6 = User_Server(user_id=2, server_id=2)
-    demo7 = User_Server(user_id=2, server_id=3)
-
-    message_list = [demo, demo2, demo3, demo4, demo5, demo6, demo7]
-    for message in message_list:
-        db.session.add(message)
+    for user in list_of_users:
+        # This will grab a random number to determine how many servers a user will
+        # be a part of
+        amt_of_servers_to_join = choice([1, 3])
+        for i in range(amt_of_servers_to_join):
+            server_id_to_join = choice([0, len(user_server_lists) - 1])
+            random_server = user_server_lists[server_id_to_join]
+            filtered_server = Server.query.filter(Server.id == random_server.id).one()
+            if user.id not in filtered_server.user_servers:
+                user.server_users.extend([random_server])
     db.session.commit()
 
 

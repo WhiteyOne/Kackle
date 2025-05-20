@@ -1,9 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 
 
-class Channel(db.Model, UserMixin):
+class Channel(db.Model):
     __tablename__ = "channels"
 
     if environment == "production":
@@ -14,18 +13,19 @@ class Channel(db.Model, UserMixin):
     server_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False
     )
-    # many to many
-    user_chan = db.relationship(
-        "User",
-        secondary="users_channels",
-    )
+    # # many to many
+    # user_chan = db.relationship(
+    #     "User",
+    #     secondary="users_channels",
+    # )
+
+    # one to many
     server_chan = db.relationship(
         "Server",
         back_populates="chan_serv",
         cascade="all, delete",
         passive_deletes=True,
     )
-    # one to many
     channel_mess = db.relationship(
         "Channel_Message",
         back_populates="message_chan",
@@ -39,5 +39,5 @@ class Channel(db.Model, UserMixin):
             "name": self.name,
             "public": self.public,
             "server_id": self.server_id,
-            "user_id": self.user_id,
+            "user_id": self.userid,
         }
