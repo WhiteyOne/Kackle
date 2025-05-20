@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { getAllServersThunk } from "../../redux/Thunks/servers";
+import { getAllServersThunk } from "../../redux/Thunks/servers";
 import "../GetOneServer"
 import "./GetAllServers.css";
 // import update button
