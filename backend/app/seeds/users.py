@@ -1,5 +1,7 @@
 from app.models import db, User, environment, SCHEMA
-from sqlalchemy.sql import text 
+from sqlalchemy.sql import text
+
+list_of_users = []
 
 
 # Adds a demo user, you can add other users here if you want
@@ -26,9 +28,13 @@ def seed_users():
         last_name="Flays",
     )
 
+    list_of_users.append(demo)
+    list_of_users.append(marnie)
+    list_of_users.append(bobbie)
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+
     db.session.commit()
 
 

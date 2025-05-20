@@ -2,19 +2,22 @@ from app.models import db, Server, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
+user_server_lists = []
+
+
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
-    demo = Server(name="Indostructable", private=True, user_id=3)
-    server_1 = Server(name="Fred_Myers", private=True, user_id=2)
-    server_2 = Server(name="Mark 1", private=True, user_id=1)
-    server_3 = Server(name="Jared", private=False, user_id=1)
-    server_4 = Server(name="Food", private=False, user_id=3)
-    server_5 = Server(name="Real Time Updates", private=True, user_id=3)
-    server_6 = Server(name="Canters", private=True, user_id=2)
-    server_7 = Server(name="Horses", private=True, user_id=1)
-    server_8 = Server(name="To-Do", private=False, user_id=2)
-    server_9 = Server(name="Freedom Writers", private=False, user_id=3)
-    server_10 = Server(name="Fungas", private=True, user_id=1)
+    demo = Server(name="Indostructable")
+    server_1 = Server(name="Fred_Myers")
+    server_2 = Server(name="Mark 1")
+    server_3 = Server(name="Jared")
+    server_4 = Server(name="Food")
+    server_5 = Server(name="Real Time Updates")
+    server_6 = Server(name="Canters")
+    server_7 = Server(name="Horses")
+    server_8 = Server(name="To-Do")
+    server_9 = Server(name="Freedom Writers")
+    server_10 = Server(name="Fungas")
 
     server_list = [
         demo,
@@ -29,8 +32,10 @@ def seed_servers():
         server_9,
         server_10,
     ]
+
     for server in server_list:
         db.session.add(server)
+        user_server_lists.append(server)
     db.session.commit()
 
 

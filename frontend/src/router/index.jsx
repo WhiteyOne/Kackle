@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/Splash/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
-import GetAllServers from '../components/Servers/GetAllServers/GetAllServers';
+import GetServers from '../components/Servers/GetAllServers';
 import Layout from './Layout';
+import GetOneServer from '../components/GetOneServer/getOneServer';
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/servers",
-        element: <GetAllServers />,
+        element: <GetServers />,
+      },
+      {
+        path: "/servers/:serverId",
+        element: <GetOneServer />,
       },
     ],
   },
