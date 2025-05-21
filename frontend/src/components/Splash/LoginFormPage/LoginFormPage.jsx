@@ -60,7 +60,8 @@ function LoginFormPage() {
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
-      <a href="/signup"><button type="link">Sign up for Kackle!</button></a>
+      <p>Don't have an account yet?</p>
+      <a href="/signup"><button type="link">Sign up!</button></a>
     </>
   );
 }
