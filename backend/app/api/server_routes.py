@@ -1,7 +1,6 @@
-from flask import Blueprint, jsonify, render_template, request
-from flask_login import login_required, current_user
+from flask import Blueprint, jsonify, request
+from flask_login import login_required
 from ..models import db, Server
-
 from ..forms import CreateServer
 
 server_routes = Blueprint("servers", __name__)
