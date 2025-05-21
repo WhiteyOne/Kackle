@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/Splash/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
-import GetServers from '../components/Servers/GetAllServers';
+import GetServers from '../components/GetAllServers/GetAllServers';
 import Layout from './Layout';
 import GetOneServer from '../components/GetOneServer/GetOneServer';
 

@@ -1,0 +1,150 @@
+/* .all-servers-page {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}   */
+
+/* .main-content {
+    display: flex;
+    flex-direction: row;
+    / justify-items: center; 
+    align-items: center; /
+    width: fit-content;
+    border-radius: 25%;
+} */
+
+/* .h1-div {
+    color: rgb(148, 50, 50);
+}  */
+
+body {
+
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;'
+    
+}
+
+
+.h1-heading {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left;  */
+    align-items: flex-start;
+    font-size: 40px;
+    color: rgb(223, 241, 150);
+    text-shadow: 5px 5px 4px #1525a1;
+    margin-bottom: 2%;
+    padding-top: 15rem;
+    padding-left: 3rem;
+}
+
+
+.server-box {
+    display: flex;
+    flex-direction: column;
+    align-self: center; 
+    justify-self: center;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    /* column-count: 3; */
+    width: 100%;
+    margin-bottom: 20px;
+
+    /* margin-left: 100px;
+    margin-right: 100px; */
+
+}
+
+.h2-servers-heading {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left;  */
+    align-items: flex-start;
+    /* align-items: start; */
+    color: #ffffff;
+    /* padding-left: 15px; */
+    padding-bottom: 2rem;
+    padding-left: 7rem;
+} 
+
+.no-dot {
+    list-style-type: none;
+}
+
+.row-wrapper {
+    padding-bottom: 4px;
+    
+}
+
+.row-div1 {
+    /* display: flex;
+    flex-direction: row; */
+    background-color: rgb(245, 229, 236);
+    width: 100%;
+    height: 100%; 
+    border-radius: 7px;
+    box-shadow: -3px -3px 6px #2c449c;
+    
+}
+
+.inner-wrapper {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.icon-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* font-size: 50px; */
+    text-decoration: none;
+    color: #ffffff
+
+}
+
+.server-icons { 
+    align-content: center;
+    background-color: rgb(38, 0, 73);
+    border-radius: 12px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width: 130px;
+    height: 130px;
+    box-shadow: -3px -3px 6px #5572d9;
+}
+
+.server-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    align-self: center;
+}
+
+
+.user-count {
+    margin-top: -15px
+}
+
+.server-icons:hover {
+    background-color: #5572d9;
+}
+
+.p {
+    display: flex; 
+    justify-self: center; 
+    flex-direction: column;
+    align-self: center;
+}

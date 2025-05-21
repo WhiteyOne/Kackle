@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { thunkAuthenticate } from "../redux/session";
+import Footer from "../components/Footer/Footer";
+
 
 
 export default function Layout() {
@@ -14,6 +16,7 @@ export default function Layout() {
   return (
     <>
         {isLoaded && <Outlet />}
+        <Footer />
     </>
   );
 }
