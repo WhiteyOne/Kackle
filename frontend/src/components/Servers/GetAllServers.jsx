@@ -36,10 +36,14 @@ function GetServers() {
   return (
     <div className="everything">
         <span className="h1">
-            <h1>This will be a Server O_0</h1>
+            <h1>Welcome back to Kackle!</h1>
         </span>
         
-
+        <div>
+          <h3>
+             Servers for { sessionUser.email }.
+          </h3>
+        </div>
         <div className="home-icon"> Home Icon
             <div className="smaller-div">Other Things</div>
         </div>

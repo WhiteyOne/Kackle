@@ -67,7 +67,7 @@ const initialState = {
     let newById = {...state.byId};
     let newAllServers = [...state.allServers];
     switch(action.type) {
-        case GET_ALL_SERVERS:
+        case GET_ALL_SERVERS: {
             const serversArr = action.payload;
             // console.log("before", serversArr)
             newState = { ...state };
@@ -77,7 +77,8 @@ const initialState = {
             }
             newState.byId = newById;
             return newState;
-        case CREATE_A_SERVER:
+        }
+        case CREATE_A_SERVER: {
             newState = {...state};
             const newServer = action.payload;
             const newServerId = newServer.id;
@@ -86,9 +87,11 @@ const initialState = {
             newState.byId = newById;
             newState.allServers = [...newAllServers, newServer];
             return newState
+        }
         default:
             return state
-    }
+        }
+    
  };
 
 

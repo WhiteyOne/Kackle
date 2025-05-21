@@ -33,7 +33,8 @@ function LoginFormPage() {
 
   return (
     <>
-      <h1>Log In</h1>
+      <h1>Welcome to Kackle</h1>
+      <h2>If you have an account, log in below</h2>
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit}>
@@ -59,6 +60,7 @@ function LoginFormPage() {
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
+      <a href="/signup"><button type="link">Sign up for Kackle!</button></a>
     </>
   );
 }
