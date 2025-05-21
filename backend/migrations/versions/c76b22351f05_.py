@@ -130,6 +130,7 @@ def downgrade():
     op.drop_table("channel_message_reactions")
     op.drop_table("channel_message_images")
     op.drop_table("channel_messages")
+    op.drop_table("user_channel")
     op.drop_table("user_servers")
     op.drop_table("channels")
     op.drop_table("servers")

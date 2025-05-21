@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .user_server import user_server
+from .users_channel import user_channel
 
 
 class User(db.Model, UserMixin):
@@ -23,6 +24,9 @@ class User(db.Model, UserMixin):
 
     server_users = db.relationship(
         "Server", secondary=user_server, back_populates="user_servers"
+    )
+    channel_users = db.relationship(
+        "Channel", secondary=user_channel, back_populates="user_channels"
     )
     # channel_user = db.relationship("Channel", secondary="users_channels")
 

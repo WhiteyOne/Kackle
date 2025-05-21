@@ -45,6 +45,7 @@ def create_server():
     return {"errors": form.errors}
 
 
+@login_required
 @server_routes.route(f"/server/<int:server_id>", methods=["PUT"])
 def server_edit(server_id):
     server = Server.query.get(server_id)

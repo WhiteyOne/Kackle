@@ -1,20 +1,23 @@
-# from .db import db, environment, SCHEMA, add_prefix_for_prod
-# from flask_login import UserMixin
+from sqlalchemy import ForeignKey
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 
-# class User_Channel(db.Model, UserMixin):
-#     __tablename__ = "users_channels"
+user_channel = db.Table(
+    "user_channel",
+    db.Column(
+        "user_id",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("users.id")),
+        primary_key=True,
+    ),
+    db.Column(
+        "channel_id",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("channels.id")),
+        primary_key=True,
+    ),
+)
 
-#     if environment == "production":
-#         __table_args__ = {"schema": SCHEMA}
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(
-#         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
-#     )
-#     channel_id = db.Column(
-#         db.Integer, db.ForeignKey(add_prefix_for_prod("channels.id")), nullable=False
-#     )
-
-#     def to_dict(self):
-#         return {"id": self.id, "user_id": self.user_id, "channel_id": self.channel_id}
+if environment == "production":
+    user_channel.schema = SCHEMA
