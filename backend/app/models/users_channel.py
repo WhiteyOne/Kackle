@@ -2,22 +2,19 @@
 # from flask_login import UserMixin
 
 
-# user_channel = db.Table(
-#     "user-channels",
-#     db.Column(
-#         "user_id",
-#         db.Integer,
-#         db.ForeignKey(add_prefix_for_prod("users.id")),
-#         primary_key=True,
-#     ),
-#     db.Column(
-#         "channel_id",
-#         db.Integer,
-#         db.ForeignKey(add_prefix_for_prod("servers.id")),
-#         primary_key=True,
-#     ),
-# )
+# class User_Channel(db.Model, UserMixin):
+#     __tablename__ = "users_channels"
 
+#     if environment == "production":
+#         __table_args__ = {"schema": SCHEMA}
 
-# if environment == "production":
-#     user_channel.schema = SCHEMA
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(
+#         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+#     )
+#     channel_id = db.Column(
+#         db.Integer, db.ForeignKey(add_prefix_for_prod("channels.id")), nullable=False
+#     )
+
+#     def to_dict(self):
+#         return {"id": self.id, "user_id": self.user_id, "channel_id": self.channel_id}

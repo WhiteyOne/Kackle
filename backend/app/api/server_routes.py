@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
 from ..models import db, Server
-
 from ..forms import CreateServer
 
 server_routes = Blueprint("servers", __name__)
@@ -54,3 +53,6 @@ def server_edit(server_id):
     server.name = data["name"]
     db.session.commit()
     return server.to_dict()
+
+
+# Delete Server Route
