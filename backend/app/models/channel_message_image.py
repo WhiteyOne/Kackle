@@ -18,8 +18,6 @@ class Channel_Message_Image(db.Model):
     chan_mess_imges = db.relationship(
         "Channel_Message",
         back_populates="chan_mess",
-        cascade="all, delete",
-        passive_deletes=True,
     )
 
     def to_dict(self):

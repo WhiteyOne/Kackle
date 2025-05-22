@@ -26,14 +26,11 @@ class Channel(db.Model):
     server_channels = db.relationship(
         "Server",
         back_populates="channel_servers",
-        # cascade="all, delete",
-        # passive_deletes=True,
     )
     channel_mess = db.relationship(
         "Channel_Message",
         back_populates="message_chan",
-        cascade="all, delete",
-        passive_deletes=True,
+        cascade="all, delete-orphan",
     )
     channel_owner = db.relationship("User", back_populates="owner_channel")
 

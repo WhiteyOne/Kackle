@@ -24,27 +24,35 @@ class User(db.Model, UserMixin):
     # many to many realtionships
 
     server_users = db.relationship(
-        "Server", secondary=user_server, back_populates="user_servers"
+        "Server",
+        secondary=user_server,
+        back_populates="user_servers",
+        cascade="all, delete",
     )
     channel_users = db.relationship(
-        "Channel", secondary=user_channel, back_populates="user_channels"
+        "Channel",
+        secondary=user_channel,
+        back_populates="user_channels",
+        cascade="all, delete",
     )
 
     # # relationships one to many
     channel_messages = db.relationship(
         "Channel_Message",
         back_populates="user_mess",
-        cascade="all, delete",
-        passive_deletes=True,
+        cascade="all, delete-orphan",
     )
     channel_reactions = db.relationship(
         "Channel_Message_Reaction",
         back_populates="user_mess_react",
-        cascade="all, delete",
-        passive_deletes=True,
+        cascade="all, delete-orphan",
     )
-    user_owner = db.relationship("Server", back_populates="server_owner")
-    owner_channel = db.relationship("Channel", back_populates="channel_owner")
+    user_owner = db.relationship(
+        "Server", back_populates="server_owner", cascade="all, delete-orphan"
+    )
+    owner_channel = db.relationship(
+        "Channel", back_populates="channel_owner", cascade="all, delete-orphan"
+    )
 
     @property
     def password(self):
@@ -56,9 +64,6 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-
-    def to_dict(self):
-        return {"id": self.id, "username": self.username, "email": self.email}
 
     @property
     def check_url(self, profile_img):

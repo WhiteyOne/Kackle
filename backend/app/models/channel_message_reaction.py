@@ -25,14 +25,10 @@ class Channel_Message_Reaction(
     user_mess_react = db.relationship(
         "User",
         back_populates="channel_reactions",
-        cascade="all, delete",
-        passive_deletes=True,
     )
     chan_mess_react = db.relationship(
         "Channel_Message",
         back_populates="chan_react",
-        cascade="all, delete",
-        passive_deletes=True,
     )
 
     def to_dict(self):

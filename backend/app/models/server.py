@@ -21,7 +21,7 @@ class Server(db.Model):
     channel_servers = db.relationship(
         "Channel",
         back_populates="server_channels",
-        # cascade="all, delete",
+        cascade="all, delete-orphan",
         # passive_deletes=True,
     )
 
