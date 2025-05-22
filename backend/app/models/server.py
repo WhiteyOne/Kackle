@@ -1,10 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from flask_login import UserMixin
-
-from sqlalchemy.dialects.postgresql import ARRAY
+from .user_server import user_server
 
 
-class Server(db.Model, UserMixin):
+class Server(db.Model):
     __tablename__ = "servers"
 
     if environment == "production":
@@ -12,19 +10,18 @@ class Server(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
+<<<<<<< HEAD
     private = db.Column(db.Boolean, nullable=False)
     # admin = db.Column(ARRAY(db.String))
     user_id = db.Column(
         db.Integer,
         db.ForeignKey(add_prefix_for_prod("users.id")),
         nullable=False,
+=======
+    user_servers = db.relationship(
+        "User", secondary=user_server, back_populates="server_users"
+>>>>>>> refs/remotes/origin/staging
     )
-    # user to server
-    user = db.relationship(
-        "User", back_populates="servers", cascade="all, delete", passive_deletes=True
-    )
-
-    # channels to server
     chan_serv = db.relationship(
         "Channel",
         back_populates="server_chan",
@@ -36,7 +33,4 @@ class Server(db.Model, UserMixin):
         return {
             "id": self.id,
             "name": self.name,
-            "private": self.private,
-            "admin": self.admin,
-            "user_id": self.user_id,
         }
