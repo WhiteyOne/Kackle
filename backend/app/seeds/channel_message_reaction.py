@@ -4,15 +4,43 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_channel_message_reaction():
-    demo = Channel_Message_Reaction(channel_message_id=1, user_id=3)
+    demo = Channel_Message_Reaction(emoji="😜", channel_message_id=1, user_id=3)
     channel_message_reaction_1 = Channel_Message_Reaction(
-        channel_message_id=1, user_id=1
+        emoji="😂", channel_message_id=1, user_id=1
     )
     channel_message_reaction_2 = Channel_Message_Reaction(
-        channel_message_id=1, user_id=2
+        emoji="😉", channel_message_id=1, user_id=2
+    )
+    channel_message_reaction_3 = Channel_Message_Reaction(
+        emoji="🤣", channel_message_id=3, user_id=3
+    )
+    channel_message_reaction_4 = Channel_Message_Reaction(
+        emoji="🤪", channel_message_id=7, user_id=1
+    )
+    channel_message_reaction_5 = Channel_Message_Reaction(
+        emoji="😜", channel_message_id=5, user_id=2
+    )
+    channel_message_reaction_6 = Channel_Message_Reaction(
+        emoji="🥴", channel_message_id=4, user_id=1
+    )
+    channel_message_reaction_7 = Channel_Message_Reaction(
+        emoji="🤤", channel_message_id=6, user_id=3
+    )
+    channel_message_reaction_8 = Channel_Message_Reaction(
+        emoji="🔥", channel_message_id=4, user_id=2
     )
 
-    message_list = [demo, channel_message_reaction_1, channel_message_reaction_2]
+    message_list = [
+        demo,
+        channel_message_reaction_1,
+        channel_message_reaction_2,
+        channel_message_reaction_3,
+        channel_message_reaction_4,
+        channel_message_reaction_5,
+        channel_message_reaction_6,
+        channel_message_reaction_7,
+        channel_message_reaction_8,
+    ]
     for message in message_list:
         db.session.add(message)
     db.session.commit()

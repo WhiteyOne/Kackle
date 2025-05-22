@@ -1,20 +1,23 @@
 from app.models import db, User, Channel, environment, SCHEMA
 from sqlalchemy.sql import text
 
+user_channel_list = []
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
-    channel_1 = Channel(name="Food", server_id=1)
-    channel_2 = Channel(name="Water", server_id=1)
-    channel_3 = Channel(name="Camping", server_id=3)
-    channel_4 = Channel(name="Horses", server_id=3)
-    channel_5 = Channel(name="Work", server_id=2)
-    channel_6 = Channel(name="Recovery", server_id=1)
+    channel_1 = Channel(name="Food", server_id=1, owner_id=3)
+    channel_2 = Channel(name="Water", server_id=1, owner_id=3)
+    channel_3 = Channel(name="Camping", server_id=3, owner_id=2)
+    channel_4 = Channel(name="Horses", server_id=3, owner_id=2)
+    channel_5 = Channel(name="Work", server_id=2, owner_id=1)
+    channel_6 = Channel(name="Recovery", server_id=1, owner_id=1)
 
     channel_list = [channel_1, channel_2, channel_3, channel_4, channel_5, channel_6]
 
     for channel in channel_list:
         db.session.add(channel)
+        user_channel_list.append(channel)
     db.session.commit()
 
 

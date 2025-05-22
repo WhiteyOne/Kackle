@@ -1,13 +1,12 @@
 from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
 from ..models import db, Server
-
 from ..forms import CreateServer
 
 server_routes = Blueprint("servers", __name__)
 
 
-##Route Type: GET
+##Route Type: GET ------------------------------
 @server_routes.route("/server", methods=["GET"])
 @login_required
 def get_servers():
@@ -17,7 +16,6 @@ def get_servers():
     return jsonify([server.to_dict() for server in servers])
 
 
-##Route Type: Get
 @server_routes.route(f"/server/<int:server_id>", methods=["GET"])
 @login_required
 def get_server(server_id):
@@ -26,9 +24,12 @@ def get_server(server_id):
     return jsonify(server.to_dict())
 
 
-""" Create Server """
+# End Get Route --------------------
+
+# """ Create Server """ ------------------
 
 
+# Put route------------------
 @server_routes.route("/server", methods=["POST"])
 @login_required
 def create_server():
@@ -42,3 +43,17 @@ def create_server():
         return new_server.to_dict()
 
     return {"errors": form.errors}
+
+
+@login_required
+@server_routes.route(f"/server/<int:server_id>", methods=["PUT"])
+def server_edit(server_id):
+    server = Server.query.get(server_id)
+    data = request.json
+
+    server.name = data["name"]
+    db.session.commit()
+    return server.to_dict()
+
+
+# Delete Server Route
