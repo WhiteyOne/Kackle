@@ -11,7 +11,7 @@ function GetChannels() {
     const sessionUser = useSelector((state) => state.session.user);
     const server = useSelector(state => state.server.byId[Number(serverId)]);
     const serversLoaded = useSelector(state => state.server.allServers.length > 0);
-    const channel = useSelector((state) => state.channel);
+    // const channel = useSelector((state) => state.channel);
     const allChannels = useSelector(state => state.channel.allChannels);
 
     useEffect(() => {
