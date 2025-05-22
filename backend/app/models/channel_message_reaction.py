@@ -11,6 +11,7 @@ class Channel_Message_Reaction(
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    emoji = db.Column(db.String(1), nullable=False)
     channel_message_id = db.Column(
         db.Integer,
         db.ForeignKey(add_prefix_for_prod("channel_messages.id")),
@@ -24,14 +25,10 @@ class Channel_Message_Reaction(
     user_mess_react = db.relationship(
         "User",
         back_populates="channel_reactions",
-        cascade="all, delete",
-        passive_deletes=True,
     )
     chan_mess_react = db.relationship(
         "Channel_Message",
         back_populates="chan_react",
-        cascade="all, delete",
-        passive_deletes=True,
     )
 
     def to_dict(self):
