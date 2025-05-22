@@ -8,3 +8,7 @@ body {
     "wdth" 100;
     background-color: rgb(150, 63, 230);
 }
+
+* {
+  margin: 0;
+}

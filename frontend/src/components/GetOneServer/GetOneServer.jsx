@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getAllServersThunk } from "../../redux/servers";
 
+
+import './GetOneServer.css';
+
 function GetOneServer() {
     const { serverId } = useParams();
     const dispatch = useDispatch();
@@ -29,21 +32,34 @@ function GetOneServer() {
     }
 
     return (
-        <div className="all-servers-page">
-            <div className="nav">
-                <div className="home-icon">Home Icon</div>
-                <div className="account-div">Account Icon</div>
-            </div>
-            <div className="main-server-content">
-                <div>
-                    <h1 className="h1">servers</h1>
+        <>
+        <div className="g1-top-bar"></div>
+
+        <div className="g1-content-wrapper">
+
+        <div className="g1-left-bar">
+                <div className="g1-server-icons">
+                <div className="g1-icon-text">
+                <h4>{server.name.slice(0, 2).toUpperCase()}</h4></div></div>
+
+                <div className="g1-server-icons">
                 </div>
-            </div>
-            <div className="server-column">
+               
+
+
+                
+                <div className="g1-server-icons">
+                    Home Icon</div>
+                <div>Account Icon</div>
+                        </div>
+               
+        <div className="g1-server-column">
                 <h2>{server.name}</h2>
-                <div className="server-icon">Server Icon</div>
+                <div className="material-symbols-outlined"></div>
             </div>
-            <div className="channel-column">
+
+            
+        <div className="g1-channel-column">
                 <h2>Your Channels</h2>
                 <div className="channels">
                     {server.channels && server.channels.length > 0 ? (
@@ -57,8 +73,10 @@ function GetOneServer() {
                     )}
                 </div>
             </div>
-            <div className="smaller-div">Other Things</div>
-        </div>
+            </div>
+</>
+
+
     );
 }
 

@@ -1,68 +1,77 @@
 
 
-.all-servers-page {
-    display: flex; 
-    flex-direction: column; 
+
+.g1-top-bar {
+height: 30px;
+background-color: rgb(150, 63, 230);
+
+width: 100vh;
+
+}
+
+.g1-content-wrapper {
+display: flex;
+flex-direction: row;
+
+
+}
+
+.g1-left-bar {
+
+background-color: rgb(150, 63, 230);
+width: 60px;
+height: 100vh;
+
+
+}
+
+.g1-server-column {
+background-color: azure;
+width: 280px;
+
+
+
+
+}
+
+.g1-channel-column {
+background-color: darkmagenta;
+width: 100vh;
+min-width: 100%;
+
+
+
+
+}
+
+.g1-icon-text {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    background-color: rgb(182, 132, 228);
+    text-decoration: none;
+    color: #ffffff
+
 }
 
 
-.nav {
-    background-color: rgb(41, 202, 84);
-}
-
-.home-icon {
-    background-color: rgb(154, 239, 239);
-}
-
-.account-div {
-    background-color: chocolate;
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }
 
 
-.main-server-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: cornflowerblue;
-    width: fit-content;
-    border-radius: 25%;
-    border-color: blue; 
-    color: white;
-    text-shadow: 2px 2px 4px #5061e6;
-}
-
-.server-column {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-    height: 300px;
-    width: 150px;
-    background-color: rgb(211, 242, 161);
+.g1-server-icons { 
+    align-content: center;
+    background-color: rgb(38, 0, 73);
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width: 40px;
+    height: 40px;
     
-}
-.server-icon {
-    max-width: 25px;
-    background-color: blue;
-    border-radius: 25px;
-    
-}
-
-.channel-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 300px;
-    width: 150px;
-    background-color: aqua;
-}
-.channels {
-    flex-direction: column;
-    background-color:chartreuse;
-}
-
-
-.smaller-div {
-    background-color: brown;
 }

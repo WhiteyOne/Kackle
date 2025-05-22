@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { thunkLogout } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import './Footer.css';
 
 
 
@@ -38,7 +39,7 @@ useEffect(() => {
     
     return (
         <>
-        <button className="login-logout-button" onClick={logout}>Log Out</button>
+        <button className="logout" onClick={logout}>Log Out</button>
         </>
     ) 
     
