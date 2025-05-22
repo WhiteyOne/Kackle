@@ -1,6 +1,8 @@
 from app.models import db, User, Channel, environment, SCHEMA
 from sqlalchemy.sql import text
 
+user_channel_list = []
+
 
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
@@ -15,6 +17,7 @@ def seed_channels():
 
     for channel in channel_list:
         db.session.add(channel)
+        user_channel_list.append(channel)
     db.session.commit()
 
 

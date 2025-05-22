@@ -20,11 +20,11 @@ class Channel(db.Model):
     )
 
     # one to many
-    server_chan = db.relationship(
+    server_channels = db.relationship(
         "Server",
-        back_populates="chan_serv",
-        cascade="all, delete",
-        passive_deletes=True,
+        back_populates="channel_servers",
+        # cascade="all, delete",
+        # passive_deletes=True,
     )
     channel_mess = db.relationship(
         "Channel_Message",

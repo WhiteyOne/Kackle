@@ -13,11 +13,11 @@ class Server(db.Model):
     user_servers = db.relationship(
         "User", secondary=user_server, back_populates="server_users"
     )
-    chan_serv = db.relationship(
+    channel_servers = db.relationship(
         "Channel",
-        back_populates="server_chan",
-        cascade="all, delete",
-        passive_deletes=True,
+        back_populates="server_channels",
+        # cascade="all, delete",
+        # passive_deletes=True,
     )
 
     def to_dict(self):

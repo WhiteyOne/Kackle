@@ -1,20 +1,24 @@
-from app.models import db, User_Channel, environment, SCHEMA
+from app.models import db, user_server, environment, SCHEMA, Channel
 from sqlalchemy.sql import text
+from .users import list_of_users
+from .channel import user_channel_list
+from random import choice
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_user_channel():
-    demo = User_Channel(user_id=1, channel_id=1)
-    demo2 = User_Channel(user_id=2, channel_id=1)
-    demo3 = User_Channel(user_id=3, channel_id=1)
-    demo4 = User_Channel(user_id=1, channel_id=2)
-    demo5 = User_Channel(user_id=1, channel_id=3)
-    demo6 = User_Channel(user_id=2, channel_id=2)
-    demo7 = User_Channel(user_id=2, channel_id=3)
-
-    message_list = [demo, demo2, demo3, demo4, demo5, demo6, demo7]
-    for message in message_list:
-        db.session.add(message)
+    for user in list_of_users:
+        # This will grab a random number to determine how many servers a user will
+        # be a part of
+        amt_of_channels_to_join = choice([1, 3])
+        for i in range(amt_of_channels_to_join):
+            channel_id_to_join = choice([0, len(user_channel_list) - 1])
+            random_channel = user_channel_list[channel_id_to_join]
+            filtered_channel = Channel.query.filter(
+                Channel.id == random_channel.id
+            ).one()
+            if user.id not in filtered_channel.user_channels:
+                user.channel_users.extend([random_channel])
     db.session.commit()
 
 
@@ -27,9 +31,9 @@ def seed_user_channel():
 def undo_user_channel():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.users_channels RESTART IDENTITY CASCADE;"
+            f"TRUNCATE table {SCHEMA}.user_channel RESTART IDENTITY CASCADE;"
         )
     else:
-        db.session.execute(text("DELETE FROM users_channels"))
+        db.session.execute(text("DELETE FROM user_channel"))
 
     db.session.commit()
