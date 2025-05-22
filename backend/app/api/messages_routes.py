@@ -7,17 +7,18 @@ from app.forms.message_form import MessageForm
 messages_routes = Blueprint("messages", __name__)
 
 
-@messages_routes.route("/messages", methods=["GET"])
+@messages_routes.route("/<int:server_id>/channel/<int:channel_id>/messages", methods=["GET"])
 @login_required
-def get_channel_messages(channel_id):
+def get_channel_messages(server_id, channel_id):
     messages = Channel_Message.query.filter_by(channel_id=channel_id).all()
     return jsonify([message.to_dict() for message in messages])
 
 
 # ---- Create Message ---- 
-@messages_routes.route("/messages", methods=["POST"])
+@messages_routes.route("/<int:server_id>/channel/<int:channel_id>/messages", methods=["POST"])
 @login_required
-def create_channel_message():
+def create_channel_message(server_id, channel_id):
+
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -25,7 +26,8 @@ def create_channel_message():
         new_message = Channel_Message(
             body=form.body.data,
             user_id=current_user.id,
-            channel_id=form.channel_id.data
+            channel_id=channel_id
+
         )
         db.session.add(new_message)
         db.session.commit()
@@ -34,7 +36,7 @@ def create_channel_message():
     return {"errors": form.errors}, 400
 
 # ---- Update Message ----
-@messages_routes.route("/messages/<int:id>", methods=["PUT"])
+@messages_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_channel_message(id):
     message = Channel_Message.query.get(id)
@@ -56,7 +58,7 @@ def update_channel_message(id):
 
 # ---- Delete Message ----
 
-@messages_routes.route("/messages/<int:id>", methods=["DELETE"])
+@messages_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_channel_message(id):
     message = Channel_Message.query.get(id)

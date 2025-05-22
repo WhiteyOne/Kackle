@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { getAllServersThunk } from "../../redux/servers";
 import { getAllChannelsThunk } from "../../redux/channels";
 
-function GetChannels() {
+function GetOneServer() {
     const { serverId } = useParams();
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
     const sessionUser = useSelector((state) => state.session.user);
     const server = useSelector(state => state.server.byId[Number(serverId)]);
     const serversLoaded = useSelector(state => state.server.allServers.length > 0);
-    const channel = useSelector((state) => state.channel);
+    // const channel = useSelector((state) => state.channel);
     const allChannels = useSelector(state => state.channel.allChannels);
 
     useEffect(() => {
@@ -59,7 +59,7 @@ function GetChannels() {
                 <ul>
   {allChannels.map(channel => (
     <li key={channel.id}>
-      <Link to={`/server/${server.id}/channel/${channel.id}/messages`}>
+      <Link to={`/server/${server.id}/channel/${channel.id}`}>
         {channel.name}
       </Link>
     </li>
@@ -73,4 +73,4 @@ function GetChannels() {
     );
 }
 
-export default GetChannels;
+export default GetOneServer;
