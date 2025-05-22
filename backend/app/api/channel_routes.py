@@ -6,50 +6,52 @@ from ..models import Server, db, Channel
 channel_routes = Blueprint('channel', __name__)
 
 # Create Channel
-@channel_routes.route('/server/<int:server_id>/channels', methods=['POST'])
+print("Channel routes")
+@channel_routes.route('/', methods=['POST'])
 @login_required
 def create_channel(server_id):
+    print(f"Creating channel for server {server_id}")
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error": "Server not found"}), 404
 
-    if server.user.id != current_user.id:
-        return jsonify({"error": "You do not have permission to create a channel on this server"}), 403
+    # if server.id != current_user.id:
+    #     return jsonify({"error": "You do not have permission to create a channel on this server"}), 403
 
     data = request.get_json()
     new_channel = Channel(
         name=data['name'],
         server_id=server_id,
-        user_id=current_user.id
+        # user_id=current_user.id
     )
     db.session.add(new_channel)
     db.session.commit()
     return jsonify(new_channel.to_dict()), 201
 
 # Read/Get Channel
-@channel_routes.route('/server/<int:server_id>/channels', methods=['GET'])
+@channel_routes.route('/', methods=['GET'])
 @login_required
 def get_channels(server_id):
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error": "Server not found"}), 404
 
-    if server.user.id != current_user.id:
-        return jsonify({"error": "You do not have permission to view channels on this server"}), 403
+    # if server.user.id != current_user.id:
+    #     return jsonify({"error": "You do not have permission to view channels on this server"}), 403
 
     channels = Channel.query.filter_by(server_id=server_id).all()
     return jsonify([channel.to_dict() for channel in channels]), 200
 
 # Update Channel
-@channel_routes.route('/server/<int:server_id>/channels/<int:channel_id>', methods=['PUT'])
+@channel_routes.route('/<int:channel_id>', methods=['PUT'])
 @login_required
 def update_channel(server_id, channel_id):
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error": "Server not found"}), 404
 
-    if server.user.id != current_user.id:
-        return jsonify({"error": "You do not have permission to update this channel"}), 403
+    # if server.user.id != current_user.id:
+    #     return jsonify({"error": "You do not have permission to update this channel"}), 403
 
     data = request.get_json()
     channel = Channel.query.get(channel_id)
@@ -61,15 +63,15 @@ def update_channel(server_id, channel_id):
     return jsonify(channel.to_dict()), 200
 
 # Delete Channel
-@channel_routes.route('/server/<int:server_id>/channels/<int:channel_id>', methods=['DELETE'])
+@channel_routes.route('/<int:channel_id>', methods=['DELETE'])
 @login_required
 def delete_channel(server_id, channel_id):
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error": "Server not found"}), 404
 
-    if server.user.id != current_user.id:
-        return jsonify({"error": "You do not have permission to delete this channel"}), 403
+    # if server.user.id != current_user.id:
+    #     return jsonify({"error": "You do not have permission to delete this channel"}), 403
 
     channel = Channel.query.get(channel_id)
     if not channel:
