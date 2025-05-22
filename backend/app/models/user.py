@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String)
     about = db.Column(db.String(300))
     phone = db.Column(db.String(14))
+    # many to many realtionships
 
     server_users = db.relationship(
         "Server", secondary=user_server, back_populates="user_servers"
@@ -28,7 +29,6 @@ class User(db.Model, UserMixin):
     channel_users = db.relationship(
         "Channel", secondary=user_channel, back_populates="user_channels"
     )
-    # channel_user = db.relationship("Channel", secondary="users_channels")
 
     # # relationships one to many
     channel_messages = db.relationship(
@@ -43,6 +43,8 @@ class User(db.Model, UserMixin):
         cascade="all, delete",
         passive_deletes=True,
     )
+    user_owner = db.relationship("Server", back_populates="server_owner")
+    owner_channel = db.relationship("Channel", back_populates="channel_owner")
 
     @property
     def password(self):

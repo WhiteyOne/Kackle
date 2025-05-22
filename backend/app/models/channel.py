@@ -14,6 +14,9 @@ class Channel(db.Model):
     server_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False
     )
+    owner_id = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
+    )
     # # many to many
     user_channels = db.relationship(
         "User", secondary=user_channel, back_populates="channel_users"
@@ -32,6 +35,7 @@ class Channel(db.Model):
         cascade="all, delete",
         passive_deletes=True,
     )
+    channel_owner = db.relationship("User", back_populates="owner_channel")
 
     def to_dict(self):
         return {

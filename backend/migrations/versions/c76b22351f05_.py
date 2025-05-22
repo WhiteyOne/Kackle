@@ -43,6 +43,11 @@ def upgrade():
         "servers",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(length=30), nullable=False),
+        sa.Column("owner_id", sa.Integer(), nullable=False),
+        sa.ForeignKeyConstraint(
+            ["owner_id"],
+            ["users.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("name"),
     )
@@ -51,9 +56,14 @@ def upgrade():
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(length=30), nullable=False),
         sa.Column("server_id", sa.Integer(), nullable=False),
+        sa.Column("owner_id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
             ["server_id"],
             ["servers.id"],
+        ),
+        sa.ForeignKeyConstraint(
+            ["owner_id"],
+            ["users.id"],
         ),
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("name"),
@@ -76,14 +86,14 @@ def upgrade():
         "channel_messages",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("body", sa.String(length=300), nullable=False),
-        sa.Column("user_id", sa.Integer(), nullable=False),
+        sa.Column("owner_id", sa.Integer(), nullable=False),
         sa.Column("channel_id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
             ["channel_id"],
             ["channels.id"],
         ),
         sa.ForeignKeyConstraint(
-            ["user_id"],
+            ["owner_id"],
             ["users.id"],
         ),
         sa.PrimaryKeyConstraint("id"),
@@ -102,6 +112,7 @@ def upgrade():
     op.create_table(
         "channel_message_reactions",
         sa.Column("id", sa.Integer(), nullable=False),
+        sa.Column("emoji", sa.String(length=1), nullable=False),
         sa.Column("channel_message_id", sa.Integer(), nullable=False),
         sa.Column("user_id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
@@ -113,6 +124,7 @@ def upgrade():
             ["users.id"],
         ),
         sa.PrimaryKeyConstraint("id"),
+        # sa.UniqueConstraint("emoji"),
     )
     # ### end Alembic commands ###
     if environment == "production":

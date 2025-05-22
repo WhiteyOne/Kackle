@@ -10,13 +10,13 @@ class Channel_Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(300), nullable=False)
-    user_id = db.Column(
+    owner_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
     channel_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("channels.id")), nullable=False
     )
-
+    # one to many
     user_mess = db.relationship(
         "User",
         back_populates="channel_messages",
