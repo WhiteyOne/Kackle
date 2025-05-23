@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import "./CreateServerModal.css"
-import { createAServerThunk, getAllServersThunk } from "../../../../redux/servers";
+import { createAServerThunk } from "../../../../redux/servers";
 
 
 function CreateServerModal({ onClose }) {

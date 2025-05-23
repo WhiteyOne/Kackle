@@ -51,7 +51,7 @@ function GetServers() {
       <ul>
         {allServers.map(server => (
           <li key={server.id} className="server-item">
-             <Link to={`/servers/${server.id}`}>
+             <Link to={`/server/${server.id}`}>
               {server.name}
             </Link>
           </li>
