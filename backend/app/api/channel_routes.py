@@ -6,11 +6,10 @@ from ..models import Server, db, Channel
 channel_routes = Blueprint('channel', __name__)
 
 # Create Channel
-print("Channel routes")
+
 @channel_routes.route('/', methods=['POST'])
 @login_required
 def create_channel(server_id):
-    print(f"Creating channel for server {server_id}")
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error": "Server not found"}), 404
