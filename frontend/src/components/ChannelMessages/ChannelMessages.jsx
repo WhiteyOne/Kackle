@@ -3,6 +3,7 @@ import "./ChannelMessages.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { io } from "socket.io-client";
+import { urlToUse } from "../../config";
 
 
 let socket;
@@ -50,7 +51,7 @@ const handleDisconnect = async () => {
 
 useEffect(()=> {
 
-    socket = io("http://localhost:8000");
+    socket = io(urlToUse);
     socket.on("chat", (data) => {
       setMessages((messages) => [...messages, data]);
   });
