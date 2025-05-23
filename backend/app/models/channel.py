@@ -38,7 +38,7 @@ class Channel(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "public": self.public,
+            # "public": self.public,
             "server_id": self.server_id,
-            "user_id": self.userid,
+            "owner_id": self.owner_id,
         }
