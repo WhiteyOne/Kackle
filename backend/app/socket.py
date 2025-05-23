@@ -1,6 +1,6 @@
 from flask_socketio import SocketIO, emit, join_room, leave_room
-# from .models.channel_message import Channel_Message
-# from .models import db
+from .models.channel_message import Channel_Message
+from .models import db
 from flask import request
 
 #middleman, establishing websocket on the backend
