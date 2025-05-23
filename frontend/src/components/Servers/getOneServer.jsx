@@ -77,7 +77,7 @@ function GetOneServer() {
                             ))}
                         </ul>
                     ) : (
-                        <p>No channels found. Click &aposCreate&apos to create one!</p>
+                        <p>No channels found. Click &quot;Create&quot; to create one!</p>
                     )}
                 </div>
             </div>

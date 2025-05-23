@@ -36,7 +36,9 @@ def create_server():
     form = CreateServer()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        new_server = Server(name=form.name.data)
+        new_server = Server(
+            name=form.name.data,
+            owner_id=current_user.id,)
         db.session.add(new_server)
         db.session.commit()
 

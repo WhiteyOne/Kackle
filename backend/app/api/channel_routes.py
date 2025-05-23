@@ -10,6 +10,7 @@ channel_routes = Blueprint('channel', __name__)
 @channel_routes.route('/', methods=['POST'])
 @login_required
 def create_channel(server_id):
+    print(f"Creating channel for server {server_id}")
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error": "Server not found"}), 404
@@ -18,12 +19,16 @@ def create_channel(server_id):
         return jsonify({"error": "You do not have permission to create a channel on this server"}), 403
 
     data = request.get_json()
+    print(f"Data received for channel creation: {data}")
+    
     new_channel = Channel(
         name=data['name'],
         server_id=server_id,
         owner_id=current_user.id
     )
     db.session.add(new_channel)
+    print(f"New channel created: {new_channel.to_dict()}")
+    
     db.session.commit()
     return jsonify(new_channel.to_dict()), 201
 

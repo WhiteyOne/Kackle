@@ -37,14 +37,14 @@ const getChannel = (channel) => {
 }
 // GetAllChannelsByServer Thunk -------------
 export const allChannelsByServer = (serverId) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}/channels`);
+    const response = await fetch(`/api/server/${serverId}/channels/`);
     const data = await response.json();
     dispatch(allChannels(data.Channels))
     return data;
 };
 // CreateChannel Thunk -------------
 export const createChannelThunk = (serverId, channel) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}/channels`, {
+    const response = await fetch(`/api/server/${serverId}/channels/`, {
         method: "POST",
         body: JSON.stringify(channel)
     });
@@ -54,7 +54,7 @@ export const createChannelThunk = (serverId, channel) => async (dispatch) => {
 };
 // DeleteChannel Thunk -------------
 export const deleteChannelThunk = (serverId, channelId) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}/channels/${channelId}`, {
+    const response = await fetch(`/api/server/${serverId}/channels/${channelId}`, {
         method: "DELETE"
     });
     if (response.ok) {
@@ -63,7 +63,7 @@ export const deleteChannelThunk = (serverId, channelId) => async (dispatch) => {
 };
 // UpdateChannel Thunk -------------
 export const updateChannelThunk = (serverId, channelId, channel) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}/channels/${channelId}`, {
+    const response = await fetch(`/api/server/${serverId}/channels/${channelId}`, {
         method: "PUT",
         body: JSON.stringify(channel)
     });
@@ -73,7 +73,7 @@ export const updateChannelThunk = (serverId, channelId, channel) => async (dispa
 };
 // GetChannel Thunk -------------
 export const getChannelThunk = (serverId, channelId) => async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}/channels/${channelId}`);
+    const response = await fetch(`/api/server/${serverId}/channels/${channelId}`);
     const data = await response.json();
     dispatch(getChannel(data));
     return data;

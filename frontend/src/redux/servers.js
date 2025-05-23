@@ -74,7 +74,6 @@ export const deleteAServerThunk = (serverId) => async (dispatch) => {
         }else {
             throw response;
         }
-    
 }
 
 // -- REDUCER --
@@ -108,6 +107,17 @@ const initialState = {
             newById[newServerId] = newServer;
             newState.byId = newById;
             newState.allServers = [...newAllServers, newServer];
+            return newState
+        }
+        case DELETE_A_SERVER: {
+            const serverId = action.payload;
+            newState = {...state};
+            // delete from byId     
+            delete newById[serverId];
+            newState.byId = newById;
+            // delete from allServers   
+            newAllServers = newAllServers.filter((server) => server.id !== serverId);
+            newState.allServers = newAllServers;
             return newState
         }
         default:
