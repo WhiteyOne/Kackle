@@ -1,27 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CreateChannelModal from "../Channels/CreateChannelModal";
+import { getOneServerThunk } from "../../redux/servers";
+import GetAllChannels  from '../Channels/getAllChannels';
 import DeleteServerModal from "./CreateDeleteServers/DeleteServerModal/DeleteServerModal";
-import { getAllServersThunk } from "../../redux/servers";
+import { allChannelsByServer } from "../../redux/channels";
 
 
 function GetOneServer() {
     const { serverId } = useParams();
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
-
     const sessionUser = useSelector((state) => state.session.user);
-    const server = useSelector(state => state.server.byId[Number(serverId)]);
+    const server = useSelector(state => state.server.singleServer);
     const serversLoaded = useSelector(state => state.server.allServers.length > 0);
     const [showDeleteServerModal, setShowDeleteServerModal] = useState(false);
-    const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
+    // const [channelUpdate, setChannelUpdate] = useState(false);
 
+    
     useEffect(() => {
-        if (!serversLoaded) {
-            dispatch(getAllServersThunk());
+        if (serversLoaded) {
+            dispatch(getOneServerThunk(serverId));
+            dispatch(allChannelsByServer(serverId));
         }
-    }, [dispatch, serversLoaded]);
+    }, [dispatch, serversLoaded, serverId]);
 
     useEffect(() => {
         if (!sessionUser) {
@@ -35,26 +37,21 @@ function GetOneServer() {
     const closeDeleteServerModal = () => {
         setShowDeleteServerModal(false);
     }
-    const openCreateChannelModal = () => {
-        setShowCreateChannelModal(true);
-    }
-    const closeCreateChannelModal = () => {
-        setShowCreateChannelModal(false);
-    }
 
     if (!server) {
         return <div>Loading server...</div>;
     }
 
     return (
-        <div className="all-servers-page">
+        <div className="single-servers-page">
             <div className="nav">
                 <div className="home-icon">Home Icon</div>
                 <div className="account-div">Account Icon</div>
             </div>
             <div className="main-server-content">
                 <div>
-                    <h1 className="h1">servers</h1>
+                    <h1 className="h1">channels</h1>
+                    <div className="get-all-channels"><GetAllChannels/></div>
                 </div>
             </div>
             <div className="server-column">
@@ -64,35 +61,12 @@ function GetOneServer() {
                     Delete Server
                 </button>
             </div>
-            <div className="channel-column">
-                <h2>Your Channels</h2>
-                <div className="channels">
-                    <button className="create-channel-button" onClick={openCreateChannelModal}>
-                        Create Channel
-                    </button>
-                    {server.channels && server.channels.length > 0 ? (
-                        <ul>
-                            {server.channels.map(channel => (
-                                <li key={channel.id}>{channel.name}</li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No channels found. Click &quot;Create&quot; to create one!</p>
-                    )}
-                </div>
-            </div>
             <div className="smaller-div">Other Things</div>
 
             {showDeleteServerModal && (
                 <DeleteServerModal
                     serverId={serverId}
                     onClose={closeDeleteServerModal}
-                />
-            )}
-            {showCreateChannelModal && (
-                <CreateChannelModal
-                    serverId={serverId}
-                    onClose={closeCreateChannelModal}
                 />
             )}
         </div>

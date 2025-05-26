@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { deleteChannelThunk, allChannelsByServer } from '../../../../redux/channels';
+import { deleteChannelThunk, allChannelsByServer } from '../../redux/channels';
 import { useNavigate } from 'react-router-dom';
-import './DeleteServerModal.css';
+import './DeleteChannelModal.css';
 
 const DeleteChannelModal = ({ channelId, onClose }) => {      
     const dispatch = useDispatch();

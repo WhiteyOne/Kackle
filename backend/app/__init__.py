@@ -34,7 +34,7 @@ app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
 app.register_blueprint(server_routes, url_prefix="/api")
 app.register_blueprint(delete_server, url_prefix="/api/server")
-app.register_blueprint(channel_routes, url_prefix="/api/server/<int:server_id>/channels")
+app.register_blueprint(channel_routes, url_prefix="/api/server")
 
 db.init_app(app)
 Migrate(app, db)
