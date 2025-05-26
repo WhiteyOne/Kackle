@@ -11,6 +11,7 @@ from .api.server_routes import server_routes
 from .api.delete_server import delete_server
 from .seeds import seed_commands
 from .config import Config
+from .api.reaction_routes import reaction_routes
 
 # from .routes.server import bp as server
 app = Flask(__name__, static_folder="../../frontend/dist", static_url_path="/")
@@ -33,6 +34,7 @@ app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
 app.register_blueprint(server_routes, url_prefix="/api")
 app.register_blueprint(delete_server, url_prefix="/api/servers")
+app.register_blueprint(reaction_routes, url_prefix="/api/channel_message")
 
 db.init_app(app)
 Migrate(app, db)
