@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from ..models import db, Server
 from ..forms import CreateServer
@@ -19,6 +19,7 @@ def get_servers():
 @server_routes.route(f"/server/<int:server_id>", methods=["GET"])
 @login_required
 def get_server(server_id):
+
     server = Server.query.get(server_id)
 
     return jsonify(server.to_dict())
@@ -27,16 +28,15 @@ def get_server(server_id):
 # End Get Route --------------------
 
 # """ Create Server """ ------------------
-
-
-# Put route------------------
 @server_routes.route("/server", methods=["POST"])
 @login_required
 def create_server():
     form = CreateServer()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        new_server = Server(name=form.name.data)
+        new_server = Server(
+            name=form.name.data,
+            owner_id=current_user.id,)
         db.session.add(new_server)
         db.session.commit()
 
@@ -44,9 +44,9 @@ def create_server():
 
     return {"errors": form.errors}
 
-
-@login_required
+# UPDATE SERVER ------------------
 @server_routes.route(f"/server/<int:server_id>", methods=["PUT"])
+@login_required
 def server_edit(server_id):
     server = Server.query.get(server_id)
     data = request.json
@@ -54,6 +54,3 @@ def server_edit(server_id):
     server.name = data["name"]
     db.session.commit()
     return server.to_dict()
-
-
-# Delete Server Route

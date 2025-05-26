@@ -34,6 +34,7 @@ class Channel_Message_Reaction(
     def to_dict(self):
         return {
             "id": self.id,
-            "message_id": self.channel_message_id,
+            "channel_message_id": self.channel_message_id,
+            "emoji": self.emoji,
             "user_id": self.user_id,
         }
