@@ -26,6 +26,9 @@ export const router = createBrowserRouter([
         path: "/servers/:serverId",
         element: <GetOneServer />,
       },
+      {
+        path: "/channel/"
+      }
     ],
   },
 ]);
