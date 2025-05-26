@@ -68,3 +68,6 @@ def remove_emoji(message_id, id):
     db.session.delete(reaction_to_delete)
     db.session.commit()
     return jsonify({"Message": "Your emoji has been incinerated"}), 200
+
+
+# did it work
