@@ -6,7 +6,7 @@ import Layout from './Layout';
 import GetOneServer from '../components/Servers/getOneServer';
 import GetOneChannel from '../components/Channels/GetOneChannel';
 import GetAllChannels from '../components/Channels/getAllChannels';
-import GetOneServer from '../components/GetOneServer/getOneServer';
+// import GetOneServer from '../components/Servers/getOneServer';
 import GetMessages from '../components/ChannelMessages/ChannelMessages';
 
 

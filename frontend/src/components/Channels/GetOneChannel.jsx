@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getChannelThunk } from "../../redux/channels";
 import DeleteChannelModal from "./DeleteChannelModal";
+import GetMessages from "../ChannelMessages/ChannelMessages";
+
 
 function GetOneChannel() {
   const { serverId, channelId } = useParams();
@@ -38,6 +40,7 @@ function GetOneChannel() {
       </div>
       <div className="channel-messages">
         <h4>Messages:</h4>
+        <GetMessages />
         <div>
           <h1 className="h1">channels</h1>
         </div>

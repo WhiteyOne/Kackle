@@ -9,7 +9,7 @@ let socket;
 function GetMessages() {
   const { channelId } = useParams();
   const user = useSelector((state) => state.session.user);
-  const channel = useSelector((state) => state.channel.byId[Number(channelId)]);
+  const channel = useSelector((state) => state.channels.allChannels[Number(channelId)]);
   const [connected, setConnected] = useState(false);
   const [newMsg, setNewMsg] = useState("");
   const [messages, setMessages] = useState([]);
