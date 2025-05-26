@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
       {
         path: "/server/:serverId/channel/:channelId",
         element: <GetOneChannel />,
-      }
+      },
       {
         path:"server/:serverId/channel/:channelId/messages",
         element: <GetMessages />
