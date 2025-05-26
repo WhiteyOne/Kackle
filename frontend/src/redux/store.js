@@ -8,9 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import serversReducer from "./servers";
 import channelsReducer from "./channels";
+import messagesReducer from "./channel_messages";
+
+
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  message: messagesReducer,
   server: serversReducer,
   channels: channelsReducer
 });

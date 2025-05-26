@@ -6,6 +6,9 @@ import Layout from './Layout';
 import GetOneServer from '../components/Servers/getOneServer';
 import GetOneChannel from '../components/Channels/GetOneChannel';
 import GetAllChannels from '../components/Channels/getAllChannels';
+// import GetOneServer from '../components/Servers/getOneServer';
+import GetMessages from '../components/ChannelMessages/ChannelMessages';
+
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +28,7 @@ export const router = createBrowserRouter([
         element: <GetServers />,
       },
       {
-        path: "/servers/:serverId",
+        path: "/server/:serverId",
         element: <GetOneServer />,
       },
       {
@@ -35,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "/server/:serverId/channel/:channelId",
         element: <GetOneChannel />,
+      },
+      {
+        path:"server/:serverId/channel/:channelId/messages",
+        element: <GetMessages />
       }
     ],
   },

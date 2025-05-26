@@ -46,3 +46,4 @@ COPY ./bin ./bin
 EXPOSE 8000
 
 CMD ["bash", "./bin/start.sh"]
+# CMD gunicorn --worker-class eventlet -w 1 app:app
