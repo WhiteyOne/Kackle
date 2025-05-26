@@ -10,20 +10,60 @@ socket = SocketIO(cors_allowed_origins="*")
 def handle_my_chat(data):
     print(data)
     msg = data["message"]
-    user = data["user"]["username"]
-    new_data = {"user": user, "msg": msg}
-    emit(
-        "chat",
-        new_data,
-        broadcast=True,
-        to=data["room"],
+    username = data["user"]["username"]
+    owner_id = data["user"]["id"]
+    channel_id = data["room"]
+
+    message = Channel_Message(
+        body=msg,
+        owner_id=owner_id,
+        channel_id=channel_id
     )
+    db.session.add(message)
+    db.session.commit()
+
+    new_data = {
+        "id": message.id,
+        "user": username,
+        "msg": msg,
+    }
+    emit("chat", new_data, broadcast=True, to=channel_id)
+
     
 @socket.on("message")
 def handle_chat(data):
     print(data)
     emit("chat", broadcast=True)
 
+@socket.on("delete_message")
+def handle_delete_message(data):
+    message_id = data["message_id"]
+    room = data["room"]
+
+    message = db.session.get(Channel_Message, message_id)
+    if message:
+        db.session.delete(message)
+        db.session.commit()
+        emit("message_deleted", {
+            "message_id": message_id
+        }, to=room, broadcast=True)
+
+
+@socket.on("update_message")
+def handle_update_message(data):
+    message_id = data["message_id"]
+    new_body = data["new_body"]
+    room = data["room"]
+
+    message = db.session.get(Channel_Message, message_id)
+    if message:
+        message.body = new_body
+        db.session.commit()
+        emit("message_updated", {
+            "message_id": message_id,
+            "new_body": new_body
+        }, to=room, broadcast=True)
+ 
 @socket.on("join")
 def on_join(data):
     user = data["user"]["username"]
