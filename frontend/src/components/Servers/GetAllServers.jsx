@@ -35,6 +35,7 @@ function GetServers() {
 
   return (
     <div className="everything">
+    
         <span className="h1">
             <h1>This will be a Server O_0</h1>
         </span>

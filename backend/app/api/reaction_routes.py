@@ -70,4 +70,3 @@ def remove_emoji(message_id, id):
     return jsonify({"Message": "Your emoji has been incinerated"}), 200
 
 
-# did it work
