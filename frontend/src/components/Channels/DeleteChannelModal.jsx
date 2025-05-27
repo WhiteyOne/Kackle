@@ -1,27 +1,27 @@
 import { useDispatch } from 'react-redux';
-import { deleteAServerThunk, getAllServersThunk } from '../../../../redux/servers';
+import { deleteChannelThunk, allChannelsByServer } from '../../redux/channels';
 import { useNavigate } from 'react-router-dom';
-import './DeleteServerModal.css';
+import './DeleteChannelModal.css';
 
-const DeleteServerModal = ({ serverId, onClose }) => {      
+const DeleteChannelModal = ({ channelId, onClose }) => {      
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleDelete = async () => {
-        await dispatch(deleteAServerThunk(serverId));
+        await dispatch(deleteChannelThunk(channelId));
         onClose();
-        navigate('/servers');
-        await dispatch(getAllServersThunk());
+        navigate('/channels');
+        await dispatch(allChannelsByServer());
 
         
     };
 
     return (
         <div className="delete-server-modal">
-            <h2>Are you sure you want to delete this server?</h2>
+            <h2>Are you sure you want to delete this channel?</h2>
             <button onClick={handleDelete}>Delete</button>
             <button onClick={onClose}>Cancel</button>
         </div>
     );
 }
-export default DeleteServerModal;
+export default DeleteChannelModal;

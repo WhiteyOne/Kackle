@@ -1,22 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getAllServersThunk } from "../../redux/servers";
+import { getAllChannelsThunk } from "../../redux/channels";
 
 function GetOneServer() {
     const { serverId } = useParams();
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
-
     const sessionUser = useSelector((state) => state.session.user);
     const server = useSelector(state => state.server.byId[Number(serverId)]);
     const serversLoaded = useSelector(state => state.server.allServers.length > 0);
+    // const channel = useSelector((state) => state.channel);
+    const allChannels = useSelector(state => state.channel.allChannels);
 
     useEffect(() => {
         if (!serversLoaded) {
             dispatch(getAllServersThunk());
         }
     }, [dispatch, serversLoaded]);
+
+
+    useEffect(() => {
+        if (server) {
+            dispatch(getAllChannelsThunk(server.id));
+        }
+    }, [dispatch, server]);
+
 
     useEffect(() => {
         if (!sessionUser) {
@@ -46,15 +56,16 @@ function GetOneServer() {
             <div className="channel-column">
                 <h2>Your Channels</h2>
                 <div className="channels">
-                    {server.channels && server.channels.length > 0 ? (
-                        <ul>
-                            {server.channels.map(channel => (
-                                <li key={channel.id}>{channel.name}</li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No channels found.</p>
-                    )}
+                <ul>
+  {allChannels.map(channel => (
+    <li key={channel.id}>
+      <Link to={`/server/${server.id}/channel/${channel.id}`}>
+        {channel.name}
+      </Link>
+    </li>
+  ))}
+</ul>
+                   
                 </div>
             </div>
             <div className="smaller-div">Other Things</div>
