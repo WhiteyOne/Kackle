@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getChannelThunk } from "../../redux/channels";
 import DeleteChannelModal from "./DeleteChannelModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function GetOneChannel() {
   const { serverId, channelId } = useParams();
@@ -10,7 +11,7 @@ function GetOneChannel() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.session.user);
   const channel = useSelector((state) => state.channels.singleChannel);
-  const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false);
+  // const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false);
 
   useEffect(() => {
     dispatch(getChannelThunk(serverId, channelId));
@@ -22,12 +23,7 @@ function GetOneChannel() {
     }
   }, [user, navigate]);
 
-  const openDeleteChannelModal = () => {
-    setShowDeleteChannelModal(true);
-  };
-  const closeDeleteChannelModal = () => {
-    setShowDeleteChannelModal(false);
-  };
+ 
   if (!channel) {
     return <div>Loading channel...</div>;
   }
@@ -44,21 +40,16 @@ function GetOneChannel() {
       </div>
       <div className="channel-column">
         <h2>{channel.name}</h2>
-        <button
-          className="delete-channel-button"
-          onClick={openDeleteChannelModal}
-        >
-          Delete
-        </button>
+       <div className="delete-channel-modal">
+          <OpenModalButton
+            buttonText="Delete Channel"
+            modalComponent={
+              <DeleteChannelModal serverId={serverId} channelId={channelId} />
+            }
+          />
+        </div>
+       </div>
       </div>
-      {showDeleteChannelModal && (
-        <DeleteChannelModal
-          serverId={serverId}
-          channelId={channelId}
-          closeModal={closeDeleteChannelModal}
-        />
-      )}
-    </div>
   );
 }
 export default GetOneChannel;

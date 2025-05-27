@@ -14,7 +14,7 @@ class Channel_Message(db.Model):
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
     channel_id = db.Column(
-        db.Integer, db.ForeignKey(add_prefix_for_prod("channels.id")), nullable=False
+        db.Integer, db.ForeignKey(add_prefix_for_prod("channels.id"), ondelete='CASCADE'), nullable=False
     )
     # one to many
     user_mess = db.relationship(
