@@ -1,15 +1,17 @@
 import { useDispatch } from 'react-redux';
 import { deleteAServerThunk, getAllServersThunk } from '../../../../redux/servers';
 import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../../../context/Modal';
 import './DeleteServerModal.css';
 
 const DeleteServerModal = ({ serverId, onClose }) => {      
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { closeModal } = useModal();
 
     const handleDelete = async () => {
         await dispatch(deleteAServerThunk(serverId));
-        onClose();
+        closeModal();
         navigate('/servers');
         await dispatch(getAllServersThunk());
 

@@ -1,4 +1,5 @@
-import { useModal } from '../../../context/Modal';
+
+import { useModal } from '../../context/Modal';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
@@ -7,6 +8,7 @@ function OpenModalButton({
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
+
 
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);

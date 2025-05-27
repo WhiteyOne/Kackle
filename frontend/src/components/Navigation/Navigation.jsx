@@ -1,19 +1,12 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import CreateServerModal from "../Servers/CreateDeleteServers/CreateServerModal/CreateServerModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import "./Navigation.css";
-import { useState } from "react";
+
 
 function Navigation() {
-  const [showCreateServerModal, setShowCreateServerModal] = useState(false)
-
-  const openServerModal = () => {
-    setShowCreateServerModal(true)
-  }
-
-  const closeServerModal = () => {
-    setShowCreateServerModal(false)
-  }
+ 
   return (
     <div className="navbar">
     <ul>
@@ -27,12 +20,11 @@ function Navigation() {
       </li>
     </ul>
 
-    <button className="create-server-button" onClick={openServerModal}>
-    +
-    </button>
-    {showCreateServerModal && (
-      <CreateServerModal onClose={closeServerModal}/>
-    )}
+    <div className="create-server-modal">
+    <OpenModalButton
+    buttonText="Create Server"
+    modalComponent={<CreateServerModal />}/>
+    </div>
     </div>
   );
 }
