@@ -41,5 +41,5 @@ class Channel_Message(db.Model):
             "id": self.id,
             "body": self.body,
             "channel_id": self.channel_id,
-            "owner_id": self.user_id,
+            "owner_id": self.owner_id,
         }
