@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createChannelThunk, allChannelsByServer } from "../../redux/channels";
+import { useModal } from "../../context/Modal";
 import "./CreateChannelModal.css";
 
 function CreateChannelModal({ serverId, onClose }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { closeModal } = useModal();
   const user = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -52,7 +54,7 @@ function CreateChannelModal({ serverId, onClose }) {
     );
     setFormData({ name: "" });
     setErrors({});
-    onClose();
+    closeModal();
     if (newChannel && newChannel.id) {
       navigate(`/server/${serverId}/channel/${newChannel.id}`);
     } else {
