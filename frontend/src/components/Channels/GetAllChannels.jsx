@@ -16,8 +16,7 @@ function GetAllChannels() {
   useEffect(() => {
     if (serverId) {
       dispatch(allChannelsByServer(serverId));
-    } else {
-    }
+    } 
   }, [dispatch, serverId]);
 
   if (!channels || channelsArray.length === 0) {
@@ -45,7 +44,7 @@ function GetAllChannels() {
           <ul className="channel-list">
             {channelsArray.map((channel) => (
               <li key={channel.id} className="channel-item">
-                <NavLink to={`/server/${serverId}/channel/${channel.id}`}>
+                <NavLink to={`/servers/${serverId}/channel/${channel.id}`}>
                   #{channel.name}
                 </NavLink>
                 <button
