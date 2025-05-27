@@ -11,7 +11,7 @@ function GetOneChannel() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.session.user);
   const channel = useSelector((state) => state.channels.singleChannel);
-  // const [showDeleteChannelModal, setShowDeleteChannelModal] = useState(false);
+
 
   useEffect(() => {
     dispatch(getChannelThunk(serverId, channelId));
