@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getChannelThunk } from "../../redux/channels";
 import DeleteChannelModal from "./DeleteChannelModal";
 import GetMessages from "../ChannelMessages/ChannelMessages";
-
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function GetOneChannel() {
