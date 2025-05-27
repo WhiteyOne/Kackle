@@ -23,8 +23,10 @@ export const deleteAReactionAction = (reaction) => ({
 // -- THUNK ACTION --
 export const getAllReactionsThunk = (serverId, channelId, messageId, reactionId) => async (dispatch) => {
     try{
-
-        const response = await fetch(`/api/server/${serverId}/channel/${channelId}/message/${messageId}/reactions` );
+        const options = {
+            method: "GET",
+        }
+        const response = await fetch(`/api/channel_message/${messageId}/reaction`, options);
         if (response.ok) {
             const data = await response.json();
             // console.log("where are my messg", data)
@@ -39,12 +41,14 @@ export const getAllReactionsThunk = (serverId, channelId, messageId, reactionId)
 };
 
 // create a reaction
-export const createAReactionThunk = (serverId, channelId, messageId, reactionBody) => async (dispatch) => {
+export const createAReactionThunk = (messageId, reactionBody) => async (dispatch) => {
     try{
+        const {emoji,channel_message_id,user_id} = reactionBody
         const reaction = {
-            body: reactionBody,
-            channel_id: channelId,
-            message_id: messageId
+            emoji: emoji,
+            channel_message_id: messageId,
+            user_id = user_id
+                
         };
         // console.log(message, "ayo?")
         const options = {
@@ -53,7 +57,7 @@ export const createAReactionThunk = (serverId, channelId, messageId, reactionBod
             body: JSON.stringify(reaction)
         }
 
-        const response = await fetch(`/api/server/${serverId}/channel/${channelId}/message/${messageId}/reactions`, options);
+        const response = await fetch(`/api/channel_message/${messageId}/reaction`, options);
         if (response.ok) {
             const data = await response.json();
             dispatch(createAReactionAction(data));
@@ -68,8 +72,10 @@ export const createAReactionThunk = (serverId, channelId, messageId, reactionBod
 // delete a reaction 
 
 export const deleteReactionThunk = (serverId, channelId, messageId, reactionId) => async (dispatch) => {
-    const reponse = await fetch(`/api/server/${serverId}/channel/${channelId}/message/${messageId}/reactions/${reactionId}`, {
-    });
+        const options = {
+            method: "DELETE",
+        }
+    const reponse = await fetch(`/api/channel_message/${messageId}/reaction/${reactionId}`, options);
     if (response.ok) {
         dispatch(deleteReaction(reactionId));
     }
