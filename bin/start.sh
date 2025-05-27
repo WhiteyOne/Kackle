@@ -4,14 +4,16 @@ cd ./backend
 
 # remove all the seeds - if we seeded before
 flask seed undo
-# remove the database
+# # remove the database
 flask db downgrade
 
-# update migrations
+
+# # update migrations
 flask db migrate
 
-#upgrade to a new head
-flask db upgrade head
+# #upgrade to a new head
+flask db upgrade
+
 #seed again
 flask seed all
 

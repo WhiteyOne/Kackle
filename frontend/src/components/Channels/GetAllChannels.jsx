@@ -16,7 +16,6 @@ function GetAllChannels() {
   useEffect(() => {
     if (serverId) {
       dispatch(allChannelsByServer(serverId));
-    } else {
     }
   }, [dispatch, serverId]);
 
