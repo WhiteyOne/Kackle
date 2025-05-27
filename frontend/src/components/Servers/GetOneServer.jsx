@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOneServerThunk } from "../../redux/servers";
-import GetAllChannels  from '../Channels/getAllChannels';
 import DeleteServerModal from "./CreateDeleteServers/DeleteServerModal/DeleteServerModal";
 import { allChannelsByServer } from "../../redux/channels";
+import GetAllChannels from "../Channels/GetAllChannels";
 
 
 function GetOneServer() {
@@ -51,7 +51,7 @@ function GetOneServer() {
             <div className="main-server-content">
                 <div>
                     <h1 className="h1">channels</h1>
-                    <div className="get-all-channels"><GetAllChannels/></div>
+                    <div className="get-all-channels"><GetAllChannels /></div>
                 </div>
             </div>
             <div className="server-column">
