@@ -28,9 +28,10 @@ function GetAllServers() {
             if (!sessionUser){
                 navigateTo('/')
             }
-        }
+        }, [sessionUser, navigateTo]
     );
 
+    if (!sessionUser) return null
 
      return (
     <div className="g-all-wrapper">
