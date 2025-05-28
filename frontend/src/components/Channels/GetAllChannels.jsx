@@ -40,7 +40,7 @@ function GetAllChannels() {
           <ul className="channel-list">
             {channelsArray.map((channel) => (
               <li key={channel.id} className="channel-item">
-                <NavLink to={`/server/${serverId}/channel/${channel.id}`}>
+                <NavLink to={`/servers/${serverId}/channel/${channel.id}`}>
                   #{channel.name}
                 </NavLink>
                <div className="delete-channel-modal">

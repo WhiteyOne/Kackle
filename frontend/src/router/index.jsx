@@ -3,12 +3,10 @@ import LoginFormPage from '../components/Splash/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import GetServers from '../components/Servers/GetAllServers';
 import Layout from './Layout';
-import GetOneServer from '../components/Servers/getOneServer';
-import GetOneChannel from '../components/Channels/GetOneChannel';
-import GetAllChannels from '../components/Channels/getAllChannels';
-// import GetOneServer from '../components/Servers/getOneServer';
-import GetMessages from '../components/ChannelMessages/ChannelMessages';
 
+import GetAllChannels from '../components/Channels/GetAllChannels';
+import GetOneChannel from '../components/Channels/GetOneChannel';
+import GetOneServer from '../components/Servers/GetOneServer';
 
 export const router = createBrowserRouter([
   {
@@ -28,20 +26,16 @@ export const router = createBrowserRouter([
         element: <GetServers />,
       },
       {
-        path: "/server/:serverId",
+        path: "/servers/:serverId",
         element: <GetOneServer />,
       },
       {
-        path: "/server/:serverId/channel",
+        path: "/servers/:serverId/channel",
         element: <GetAllChannels />,
       },
       {
-        path: "/server/:serverId/channel/:channelId",
+        path: "/servers/:serverId/channel/:channelId",
         element: <GetOneChannel />,
-      },
-      {
-        path:"server/:serverId/channel/:channelId/messages",
-        element: <GetMessages />
       }
     ],
   },

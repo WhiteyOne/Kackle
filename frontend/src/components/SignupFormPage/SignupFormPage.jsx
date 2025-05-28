@@ -42,22 +42,29 @@ function SignupFormPage() {
 
   return (
     <>
-      <h1>Sign Up</h1>
+     <div className="login-wrapper">
+      <div className="title-style">Kackle</div>
+      <div className="form-text">Sign Up</div>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="login-item">
+        <label className="form-text">
           Email
           <input
+            className="form-box"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
+        <div className="login-item">
         {errors.email && <p>{errors.email}</p>}
-        <label>
+        </div>
+        <label className="form-text">
           Username
           <input
+            className="form-box"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -65,9 +72,12 @@ function SignupFormPage() {
           />
         </label>
         {errors.username && <p>{errors.username}</p>}
-        <label>
+        </div>
+        <div className="login-item">
+        <label className="form-text">
           Password
           <input
+            className="form-box"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -75,18 +85,25 @@ function SignupFormPage() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <label>
+        </div>
+         <div className="login-item">
+        <label className="form-text">
           Confirm Password
           <input
+            className="form-box"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
+        </div>
+        <div className="login-item">
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="login-button">Sign Up</button>
+        </div>
       </form>
+            </div>
     </>
   );
 }
