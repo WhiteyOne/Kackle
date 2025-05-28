@@ -18,7 +18,7 @@ function GetOneServerChannel() {
         if (!serversLoaded) {
             dispatch(getAllServersThunk());
         }
-    }, [dispatch, serversLoaded]);
+    }, [dispatch, serversLoaded])
 
 
     useEffect(() => {
