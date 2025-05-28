@@ -13,7 +13,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser) return <Navigate to="/servers" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,9 +28,13 @@ function LoginFormPage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      navigate("/");
+      navigate("/servers");
     }
   };
+
+  const demoLogin = () => {
+    return dispatch(thunkLogin({ email: "demo@aa.io", password: 'password'}))
+  }
 
   return (
     <>
@@ -74,7 +78,7 @@ function LoginFormPage() {
       <div className="signup-text">No Account? Need a demo?</div>
       <div className="button-wrapper">
       <NavLink to="/signup"><button className="signup-button">Sign Up</button></NavLink>
-      <NavLink to="/signup"><button className="signup-button">Demo</button></NavLink>
+      <button id="demologinbutton" onClick={demoLogin}>Demo User</button>
       </div></div>
       
     </>
