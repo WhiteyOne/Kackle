@@ -73,4 +73,4 @@ function GetOneServerChannel() {
     );
 }
 
-export default GetOneServerChannel;;
+export default GetOneServerChannel;
