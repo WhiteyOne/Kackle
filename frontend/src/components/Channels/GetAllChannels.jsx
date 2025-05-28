@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allChannelsByServer } from "../../redux/channels";
 import { NavLink, useParams } from "react-router-dom";
@@ -13,18 +13,24 @@ function GetAllChannels() {
   const { serverId } = useParams();
   const channels = useSelector((state) => state.channels.allChannels);
   const channelsArray = channels ? Object.values(channels) : [];
+  const [openEditBox, setOpenEditBox] = useState(false)
+  const [inputBox, setInputBox] = useState()
   
-
   useEffect(() => {
     if (serverId) {
       dispatch(allChannelsByServer(serverId));
-    } 
+    }
   }, [dispatch, serverId]);
-
+  
   if (!channels) {
     return <div>Loading...</div>;
   }
-
+  const handleSubmit = (serverId, channelId, newChannelName) => {
+    console.log(inputBox)
+    e.preventDefault();
+    setOpenEditBox(!openEditBox)
+    dispatch(updateChannelThunk(serverId, channelId, newChannelName))
+  }
 
   return (
     <div className="channel-column">
@@ -32,10 +38,10 @@ function GetAllChannels() {
       <div className="channels">
         <div className="create-channel-modal">
           <OpenModalButton
-          buttonText="Create Channel"
-          modalComponent={<CreateChannelModal serverId={serverId} />}
+            buttonText="Create Channel"
+            modalComponent={<CreateChannelModal serverId={serverId} />}
           />
-        </div>  
+        </div>
         <div>
           <ul className="channel-list">
             {channelsArray.map((channel) => (
@@ -43,23 +49,38 @@ function GetAllChannels() {
                 <NavLink to={`/server/${serverId}/channel/${channel.id}`}>
                   #{channel.name}
                 </NavLink>
-               <div className="delete-channel-modal">
-                <OpenModalButton
-                  buttonText="Delete"
-                  modalComponent={
-                    <DeleteChannelModal
-                      serverId={serverId}
-                      channelId={channel.id}
+                <div className={openEditBox ? 'edit-channel-card' : 'hidden'}>
+
+                  <form
+                    onSubmit={() => handleSubmit(serverId, channel.id, inputBox)}
+                  >
+                    <input
+                      type="text"
+                      placeholder={`${channel.name}`}
+                      value={inputBox}
+                      onChange={(e) => setInputBox(e.target.value)}
                     />
-                  }
-                />
+                    <button type="submit">ready to giggle?</button>
+                  </form>
+                </div>
+                <div className="delete-channel-modal">
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={
+                      <DeleteChannelModal
+                        serverId={serverId}
+                        channelId={channel.id}
+                      />
+                    }
+                  />
                 </div>
                 <button
                   className="update-channel-button"
-                  onClick={() => dispatch(updateChannelThunk(channel.id))}
+                  onClick={() => setOpenEditBox(!openEditBox)}
                 >
                   Edit
                 </button>
+
               </li>
             ))}
           </ul>

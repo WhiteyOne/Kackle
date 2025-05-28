@@ -38,6 +38,7 @@ const getChannel = (channel) => {
 export const allChannelsByServer = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/server/${serverId}/channel`);
   const data = await response.json();
+  
 
   dispatch(allChannels(data));
   return data;
@@ -74,6 +75,7 @@ export const deleteChannelThunk = (serverId, channelId) => async (dispatch) => {
 // UpdateChannel Thunk -------------
 export const updateChannelThunk =
   (serverId, channelId, channel) => async (dispatch) => {
+    console.log(serverId, channelId, channel,"😂")
     const response = await fetch(
       `/api/server/${serverId}/channel/${channelId}`,
       {
