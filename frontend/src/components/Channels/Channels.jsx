@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getAllServersThunk } from "../../redux/servers";
-import { getAllChannelsThunk } from "../../redux/channels";
+import { getChannelThunk } from "../../redux/channels";
 
-function GetOneServer() {
+function GetOneServerChannel() {
     const { serverId } = useParams();
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
@@ -23,7 +23,7 @@ function GetOneServer() {
 
     useEffect(() => {
         if (server) {
-            dispatch(getAllChannelsThunk(server.id));
+            dispatch(getChannelThunk(server.id));
         }
     }, [dispatch, server]);
 
@@ -73,4 +73,4 @@ function GetOneServer() {
     );
 }
 
-export default GetOneServer;
+export default GetOneServerChannel;;

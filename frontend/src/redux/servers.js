@@ -32,8 +32,8 @@ export const updateServerAction = (server) => ({
     payload: server,
 });
 
-
 // -- THUNK ACTION --
+// ✅✅
 export const getAllServersThunk = () => async (dispatch) => {
     try{
 
