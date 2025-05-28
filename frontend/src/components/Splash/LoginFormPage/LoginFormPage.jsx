@@ -15,6 +15,12 @@ function LoginFormPage() {
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
+
+  const handleDemoButton = (e)=>{
+    setEmail()
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
