@@ -1,11 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getOneServerThunk } from "../../redux/servers";
+<<<<<<< HEAD
 import GetAllChannels  from '../Channels/GetAllChannels';
 import DeleteServerModal from "./CreateDeleteServers/DeleteServerModal/DeleteServerModal";
 import { allChannelsByServer } from "../../redux/channels";
 import './GetOneServer.css';
+=======
+import GetAllChannels  from '../Channels/getAllChannels';
+import DeleteServerModal from "./CreateDeleteServers/DeleteServerModal/DeleteServerModal";
+import { allChannelsByServer } from "../../redux/channels";
+>>>>>>> staging
 
 
 function GetOneServer() {
@@ -14,18 +20,22 @@ function GetOneServer() {
     const navigateTo = useNavigate();
     const sessionUser = useSelector((state) => state.session.user);
     const server = useSelector(state => state.server.singleServer);
+<<<<<<< HEAD
     const serversLoaded = useSelector(state => state.server.allServers.length > 0);
     const [showDeleteServerModal, setShowDeleteServerModal] = useState(false);
     // const [showChannel, setShowChannel] = useState(false);
   
+=======
+
+
+>>>>>>> staging
 
     
     useEffect(() => {
-        if (serversLoaded) {
             dispatch(getOneServerThunk(serverId));
             dispatch(allChannelsByServer(serverId));
-        }
-    }, [dispatch, serversLoaded, serverId]);
+        
+    }, [dispatch, serverId]);
 
     useEffect(() => {
         if (!sessionUser) {
@@ -33,18 +43,13 @@ function GetOneServer() {
         }
     }, [sessionUser, navigateTo]);
 
-    const openDeleteServerModal = () => {
-        setShowDeleteServerModal(true);
-    }
-    const closeDeleteServerModal = () => {
-        setShowDeleteServerModal(false);
-    }
 
     if (!server) {
         return <div>Loading server...</div>;
     }
 
     return (
+<<<<<<< HEAD
         <div className="g1-content-wrapper">
             <div className="g1-left-bar"><div className="server-icon">Server Icon</div></div>
 
@@ -76,6 +81,32 @@ function GetOneServer() {
                     <div className="get-all-channels"><GetAllChannels/></div>
 </div>
                 <div className="g1-channel-column"></div>
+=======
+        <div className="single-servers-page">
+            <div className="nav">
+                <div className="home-icon">Home Icon</div>
+                <div className="account-div">Account Icon</div>
+            </div>
+            <div className="main-server-content">
+                <div>
+                    <h1 className="h1">channels</h1>
+                    <div className="get-all-channels"><GetAllChannels /></div>
+                </div>
+            </div>
+            <div className="server-column">
+                <h2>{server.name}</h2>
+                <div className="server-icon">Server Icon</div>
+                <div className="delete-server-modal">
+                    <OpenModalButton
+                        buttonText="Delete Server"
+                        modalComponent={<DeleteServerModal serverId={server.id} />}
+                    />
+                    </div>
+            </div>
+            <div className="smaller-div">Other Things</div>
+
+            
+>>>>>>> staging
         </div>
     );
 }

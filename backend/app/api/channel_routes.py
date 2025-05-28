@@ -16,11 +16,10 @@ def create_channel(server_id):
         return jsonify({"error: Server not found"}), 404
 
     if server.owner_id != current_user.id:
-        return jsonify({"error: You do not have the correct laughter level to create a channel on this server"}), 403
+        return jsonify({"error: You must be the head giggler to create a channel on this server"}), 403
 
     data = request.get_json()
 
-    
     if data is None:
         return jsonify({"error: Request body must be valid JSON"}), 400
 
@@ -32,7 +31,7 @@ def create_channel(server_id):
     channel_exists = Channel.query.filter_by(name=channel_name, server_id=server_id).first()
 
     if channel_exists:
-        return jsonify({"error: A channel with this name already exisys. Please choose a different name."}), 400
+        return jsonify({"error: A channel with this name already exisys. Try a different joke."}), 400
 
     
     new_channel = Channel(
@@ -54,8 +53,7 @@ def get_channels(server_id):
     if not server:
         return jsonify({"error: Server not found"}), 404
 
-    if server.owner_id != current_user.id:
-        return jsonify({"error: You do not have permission to view channels on this server"}), 403
+    
 
     channels = Channel.query.filter_by(server_id=server_id).all()
     
@@ -85,7 +83,7 @@ def update_channel(server_id, channel_id):
         return jsonify({"error: Server not found"}), 404
 
     if server.owner_id != current_user.id:
-        return jsonify({"error: You do not have permission to update this channel"}), 403
+        return jsonify({"error: You must be the head giggler to update this channel."}), 403
 
     data = request.get_json()
     channel = Channel.query.get(channel_id)
@@ -105,7 +103,7 @@ def delete_channel(server_id, channel_id):
         return jsonify({"error: Server not found"}), 404
 
     if server.owner_id != current_user.id:
-        return jsonify({"error: You do not have permission to delete this channel"}), 403
+        return jsonify({"error: You must be the head giggler to delete this channel."}), 403
 
     channel = Channel.query.get(channel_id)
     if not channel:
@@ -113,4 +111,4 @@ def delete_channel(server_id, channel_id):
 
     db.session.delete(channel)
     db.session.commit()
-    return jsonify({"message: Channel deleted successfully"}), 200
+    return jsonify({"message": "Channel deleted successfully"}), 200
