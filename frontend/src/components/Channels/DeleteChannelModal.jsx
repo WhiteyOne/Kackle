@@ -13,7 +13,7 @@ const DeleteChannelModal = ({ serverId, channelId, onClose }) => {
         try{
         await dispatch(deleteChannelThunk(serverId, channelId));
         closeModal();
-        navigate(`/server/${serverId}/channel`);
+        navigate(`/servers/${serverId}/channel`);
         await dispatch(allChannelsByServer());
         } catch (error) {
             console.log("Failed to delete channel:", error);
