@@ -10,7 +10,7 @@ delete_server = Blueprint("delete", __name__)
 @login_required
 def delete_a_server(id):
     print("---------am i in the function?---------")
-    server_to_delete = Server.query.get(id=id)
+    server_to_delete = Server.query.get(id)
 
     if server_to_delete is None:
         return jsonify({"error": "Server not found"})
