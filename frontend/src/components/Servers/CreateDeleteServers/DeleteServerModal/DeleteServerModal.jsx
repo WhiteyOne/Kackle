@@ -16,7 +16,7 @@ const DeleteServerModal = ({ serverId }) => {
     if (server && !isOwner) {
         return (
             <div className="unauthorized-message">
-                <p>You are not authorized to delete this server</p>
+                <p>You are not authorized to update this server.</p>
                 <button onClick={closeModal}>Close</button>
             </div>
         );
@@ -27,10 +27,11 @@ const DeleteServerModal = ({ serverId }) => {
             closeModal();
             console.log('14 handle Delete for DeleteServerModal', id)
         } catch (error) {
-
-        }    
-    // dispatch(getAllServersThunk());
-    navigate('/servers');
+            
+        }
+        // dispatch(getAllServersThunk());
+        navigate('/servers');
+    };
 
     return (
         <div className="delete-server-modal">
@@ -39,6 +40,5 @@ const DeleteServerModal = ({ serverId }) => {
             <button onClick={closeModal}>Cancel</button>            
         </div>
     );
-}
 }
 export default DeleteServerModal;
