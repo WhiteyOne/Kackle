@@ -41,14 +41,14 @@ export const thunkLogin = (credentials) => async dispatch => {
 };
 
 export const thunkSignup = (user) => async (dispatch) => {
-   const { username, firstName, lastName, email, password } = user;
+   const { username, first_name, last_name, email, password } = user;
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
      body: JSON.stringify({
       username,
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       email,
       password
     })
