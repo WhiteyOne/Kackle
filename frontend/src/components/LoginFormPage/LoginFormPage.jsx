@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { thunkLogin } from "../../../redux/session";
 import { useDispatch } from "react-redux";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormPage() {
