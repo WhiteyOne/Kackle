@@ -6,11 +6,11 @@ from flask_login import current_user, login_required
 delete_server = Blueprint("delete", __name__)
 
 
-@delete_server.route(f"/<int:id>", methods=["DELETE"])
+@delete_server.route("/<int:id>/hmm", methods=["DELETE"])
 @login_required
 def delete_a_server(id):
-
-    server_to_delete = Server.query.get(id)
+    print("---------am i in the function?---------")
+    server_to_delete = Server.query.get(id=id)
 
     if server_to_delete is None:
         return jsonify({"error": "Server not found"})
