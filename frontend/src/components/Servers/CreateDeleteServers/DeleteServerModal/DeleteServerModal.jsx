@@ -16,7 +16,7 @@ const DeleteServerModal = ({ serverId }) => {
     if (server && !isOwner) {
         return (
             <div className="unauthorized-message">
-                <p>You are not authorized to update this server.</p>
+                <p>You are not authorized to delete this server.</p>
                 <button onClick={closeModal}>Close</button>
             </div>
         );
