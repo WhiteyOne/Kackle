@@ -32,8 +32,8 @@ export const updateServerAction = (server) => ({
     payload: server,
 });
 
-
 // -- THUNK ACTION --
+// ✅✅
 export const getAllServersThunk = () => async (dispatch) => {
     try{
 
@@ -62,6 +62,7 @@ export const createAServerThunk = (server) => async (dispatch) => {
         if (response.ok) {
             const data = await response.json();
             dispatch(createAServerAction(data));
+            return data;
         }else {
             throw response;
         }
@@ -91,6 +92,7 @@ export const getOneServerThunk = (serverId) => async (dispatch) => {
         if (response.ok) {
             const data = await response.json();
             dispatch(getOneServerAction(data));
+            return data
         }else {
             throw response;
         }

@@ -1,14 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/Splash/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
-import GetServers from '../components/Servers/GetAllServers';
-import Layout from './Layout';
-import GetOneServer from '../components/Servers/getOneServer';
-import GetOneChannel from '../components/Channels/GetOneChannel';
-import GetAllChannels from '../components/Channels/getAllChannels';
-// import GetOneServer from '../components/Servers/getOneServer';
-import GetMessages from '../components/ChannelMessages/ChannelMessages';
 
+import Layout from './Layout';
+
+import { GetAllServers, GetOneServer } from '../components/Servers';
+import GetAllChannels from '../components/Channels/GetAllChannels';
+import { GetOneChannel } from '../components/Channels';
 
 export const router = createBrowserRouter([
   {
@@ -20,28 +18,24 @@ export const router = createBrowserRouter([
         element: <LoginFormPage />,
       },
       {
-        path: "signup",
+        path: "/signup",
         element: <SignupFormPage />,
       },
       {
         path: "/servers",
-        element: <GetServers />,
+        element: <GetAllServers />,
       },
       {
-        path: "/server/:serverId",
-        element: <GetOneServer />,
+        path: "/servers/:serverId",
+        element: <GetOneServer/>,
       },
       {
-        path: "/server/:serverId/channel",
+        path: "/servers/:serverId/channel",
         element: <GetAllChannels />,
       },
       {
-        path: "/server/:serverId/channel/:channelId",
+        path: "/servers/:serverId/channel/:channelId",
         element: <GetOneChannel />,
-      },
-      {
-        path:"server/:serverId/channel/:channelId/messages",
-        element: <GetMessages />
       }
     ],
   },

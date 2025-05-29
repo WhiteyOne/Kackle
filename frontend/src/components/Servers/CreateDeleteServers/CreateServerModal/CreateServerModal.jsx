@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import "./CreateServerModal.css"
 import { createAServerThunk } from "../../../../redux/servers";
+import { useModal } from "../../../../context/Modal";
+import "./CreateServerModal.css"
 
 
-function CreateServerModal({ onClose }) {
+function CreateServerModal() {
     // hooks
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { closeModal } = useModal()
     // redux state
     const user = useSelector(state => state.session.user)
 
@@ -40,7 +42,7 @@ function CreateServerModal({ onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateForm){
+        if (!validateForm()){
             return;
         }
 
@@ -55,17 +57,15 @@ function CreateServerModal({ onClose }) {
         } else if (newServer && newServer.id) {
             setFormData({name: ""});
             setErrors({});
-            onClose();
+            closeModal()
             navigate(`/servers/${newServer.id}`)
         }
     }
 
     return (
-        <div className="modal-background" onClick={onClose}>
+
             <div className="create-form" onClick={(e) => e.stopPropagation()}>
-                <button className="close-button" onClick={onClose}>
-                X
-                </button>
+              
                 <form onSubmit={handleSubmit} className="create-server-form">
                    <div className="server-form">
                     <p>Create a New Server</p>
@@ -83,7 +83,6 @@ function CreateServerModal({ onClose }) {
                     </button>
                 </form>
             </div>
-        </div>
     )
 }
 

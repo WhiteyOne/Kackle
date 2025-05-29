@@ -1,40 +1,45 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import CreateServerModal from "../Servers/CreateDeleteServers/CreateServerModal/CreateServerModal";
+// import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import "./Navigation.css";
+
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Navigation() {
-  const [showCreateServerModal, setShowCreateServerModal] = useState(false)
+  const user = useSelector((store) => store.session.user);
+  const [showCreateServerModal, setShowCreateServerModal] = useState(false);
 
   const openServerModal = () => {
-    setShowCreateServerModal(true)
-  }
+    setShowCreateServerModal(true);
+  };
 
   const closeServerModal = () => {
-    setShowCreateServerModal(false)
-  }
+    setShowCreateServerModal(false);
+  };
+
+  if(user){
+
   return (
     <div className="navbar">
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-
-      <li>
+      <div className="login-button">
         <ProfileButton />
-        <NavLink to="/servers">Servers</NavLink>
-      </li>
-    </ul>
-
-    <button className="create-server-button" onClick={openServerModal}>
-    +
-    </button>
-    {showCreateServerModal && (
-      <CreateServerModal onClose={closeServerModal}/>
-    )}
+      </div>
+      <div>
+        <NavLink to="/servers"><button className="servers-button">Servers</button></NavLink>
+      </div>
+      <div>
+      <button className="create-server-button" onClick={openServerModal}>
+          Create A Server
+        </button>
+        {showCreateServerModal && (
+          <CreateServerModal onClose={closeServerModal} />
+        )}
+      </div>
     </div>
   );
+}
 }
 
 export default Navigation;

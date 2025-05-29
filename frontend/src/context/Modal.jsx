@@ -17,6 +17,7 @@ export function ModalProvider({ children }) {
     if (typeof onModalClose === 'function') {
       setOnModalClose(null);
       onModalClose();
+
     }
   };
 

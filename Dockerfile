@@ -1,4 +1,4 @@
-FROM --platform=amd64 node:18 as frontend
+FROM --platform=linux/amd64 node:18 as frontend
 
 
 WORKDIR /frontend
@@ -12,11 +12,10 @@ COPY ./frontend .
 RUN npm run build
 
 # ------ python ------
-FROM --platform=amd64 python:3.9
+FROM --platform=linux/amd64 python:3.9
 
 WORKDIR /var/www
 
-RUN pip install psycopg2[binary]
 
 # ---- env
 ENV FLASK_APP=app
@@ -42,6 +41,7 @@ COPY ./backend ./backend
 COPY --from=frontend /frontend/dist ./frontend/dist
 COPY ./bin ./bin
 
+RUN pip install psycopg2[binary]
 
 EXPOSE 8000
 

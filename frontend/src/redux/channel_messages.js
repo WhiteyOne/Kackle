@@ -70,9 +70,12 @@ const initialState = {
     let newState;
     let newById = {...state.byId};
     let newAllMessages = [...state.allMessages];
+    let messageArr;
+    let newMessage;
+    let newMessageId;
     switch(action.type) {
         case GET_ALL_MESSAGES:
-            const messageArr = action.payload;
+            messageArr = action.payload;
             // console.log("before", messageArr)
             newState = { ...state };
             newState.allMessages = messageArr;
@@ -83,8 +86,8 @@ const initialState = {
             return newState;
         case CREATE_A_MESSAGE:
             newState = {...state};
-            const newMessage = action.payload;
-            const newMessageId = newMessage.id;
+            newMessage = action.payload;
+            newMessageId = newMessage.id;
             // update byId and allServers
             newById[newMessageId] = newMessage;
             newState.byId = newById;

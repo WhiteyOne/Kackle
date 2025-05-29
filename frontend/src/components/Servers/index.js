@@ -1,4 +1,6 @@
-import GetAllServers from './GetAllServers';
+import GetOneServer from "./GetOneServer";
+import GetAllServers from "./GetAllServers";
+import CreateServerModal from "./CreateDeleteServers/CreateServerModal/CreateServerModal";
+import DeleteChannelModal from "../Channels/DeleteChannelModal";
 
-
-export default GetAllServers;
+export {GetOneServer, GetAllServers, CreateServerModal,DeleteChannelModal};

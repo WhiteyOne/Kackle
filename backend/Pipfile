@@ -29,7 +29,6 @@ wtforms = "==3.0.1"
 zipp = "==3.17.0"
 psycopg2-binary = "*"
 flask-socketio = "*"
-eventlet = "==0.30.2"
 
 [dev-packages]
 

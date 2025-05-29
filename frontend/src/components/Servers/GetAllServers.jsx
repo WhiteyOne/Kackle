@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 
 
-function GetServers() {
+function GetAllServers() {
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
     const sessionUser = useSelector((state) => state.session.user);
@@ -28,38 +28,45 @@ function GetServers() {
             if (!sessionUser){
                 navigateTo('/')
             }
-        }
+        }, [sessionUser, navigateTo]
     );
 
+    if (!sessionUser) return null
 
-
-  return (
+     return (
+    <div className="g-all-wrapper">
     <div className="everything">
         <span className="h1">
-            <h1>This will be a Server O_0</h1>
+            <h1 className="h1-heading">Choose your Kackle Server O_0</h1>
         </span>
-        
 
-        <div className="home-icon"> Home Icon
-            <div className="smaller-div">Other Things</div>
-        </div>
-        <div className="server-icon"> Server Icon
-            <div className="channels">Channels</div>
-        </div>
-        <div className="account-div">Account Icon</div>
-          <h2>Your Servers</h2>
+          <h2 className="h2-servers-heading">Servers for {sessionUser.first_name} {sessionUser.last_name}</h2>
       <ul>
         {allServers.map(server => (
-          <li key={server.id} className="server-item">
-             <Link to={`/server/${server.id}`}>
-              {server.name}
+          <li key={server.id} className="server-item" id="no-dot">
+             <Link to={`/servers/${server.id}`}>
+
+              <div className="row-wrapper">
+              <div className="row-div1">
+
+              <div className="server-icons">
+              <h1 className="icon-text">{server.name.slice(0, 2).toUpperCase()}</h1>
+              <div className="icon-text">
+              </div></div>
+              <div className="server-info">{server.name}
+              </div>
+              <div className="user-count">
+              
+              </div>
+
+            </div></div>
             </Link>
           </li>
         ))}
       </ul>
     </div>
-
+</div>
   );
 }
 
-export default GetServers;
+export default GetAllServers;
