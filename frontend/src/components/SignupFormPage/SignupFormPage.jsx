@@ -11,6 +11,8 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
@@ -30,6 +32,8 @@ function SignupFormPage() {
         email,
         username,
         password,
+        first_name,
+        last_name
       })
     );
 
@@ -100,6 +104,34 @@ function SignupFormPage() {
         </div>
         <div className="login-item">
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+         <div className="login-item">
+        <label className="form-text">
+          First Name
+          <input
+            className="form-box"
+            type="first name"
+            value={first_name}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.firstName && <p>{errors.firstName}</p>}
+        </div>
+         <div className="login-item">
+        <label className="form-text">
+          Last Name
+          <input
+            className="form-box"
+            type="last name"
+            value={last_name}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        </div>
+        </div>
+        <div className="login-item">
+        {errors.lastName && <p>{errors.lastName}</p>}
         <button type="submit" className="login-button">Sign Up</button>
         </div>
       </form>
