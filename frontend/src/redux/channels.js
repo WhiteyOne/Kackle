@@ -78,12 +78,20 @@ export const updateChannelThunk =
       `/api/server/${serverId}/channel/${channelId}`,
       {
         method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(channel),
       }
     );
+  if (response.ok) {
     const data = await response.json();
     dispatch(updateChannel(data));
     return data;
+  } else {
+    console.log("Failed to update channel.");
+    throw response;
+  }
   };
 // GetChannel Thunk -------------
 export const getChannelThunk = (serverId, channelId) => async (dispatch) => {

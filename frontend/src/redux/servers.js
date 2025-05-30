@@ -88,8 +88,8 @@ export const deleteAServerThunk = (serverId) => async (dispatch) => {
 };
 
 export const getOneServerThunk = (serverId) => async (dispatch) => {
-
         const response = await fetch(`/api/server/${serverId}`);
+        console.log("response", response)
         if (response.ok) {
             const data = await response.json();
             dispatch(getOneServerAction(data));
@@ -164,6 +164,7 @@ const initialState = {
         case GET_ONE_SERVER: {
             const server = action.payload;
             newState = {...state};
+            const newById = {...state.byId}
             //update byId
             newById[server.id] = server;
             newState.byId = newById;
