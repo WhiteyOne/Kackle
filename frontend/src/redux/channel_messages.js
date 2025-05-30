@@ -19,10 +19,11 @@ export const createAMessageAction = (message) => ({
 export const getAllMessagesThunk = (serverId, channelId) => async (dispatch) => {
     try{
 
-        const response = await fetch(`/api/server/${serverId}/channel/${channelId}/messages` );
+        const response = await fetch(`/api/${serverId}/channel/${channelId}/messages` );
+        console.log('what is passed in: ', serverId, channelId)
         if (response.ok) {
             const data = await response.json();
-            // console.log("where are my messg", data)
+            console.log("where are my messg", data)
             dispatch(getAllMessagesAction(data));
         }else {
             throw response;
@@ -47,7 +48,7 @@ export const createAMessageThunk = (serverId, channelId, messageBody) => async (
             body: JSON.stringify(message)
         }
 
-        const response = await fetch(`/api/server/${serverId}/channel/${channelId}/messages`, options);
+        const response = await fetch(`/api/${serverId}/channel/${channelId}/messages`, options);
         if (response.ok) {
             const data = await response.json();
             dispatch(createAMessageAction(data));

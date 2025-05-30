@@ -21,7 +21,7 @@ export const deleteAReactionAction = (reaction) => ({
 
 
 // -- THUNK ACTION --
-export const getAllReactionsThunk = (serverId, channelId, messageId, reactionId) => async (dispatch) => {
+export const getAllReactionsThunk = (messageId) => async (dispatch) => {
     try{
         const options = {
             method: "GET",
@@ -41,16 +41,16 @@ export const getAllReactionsThunk = (serverId, channelId, messageId, reactionId)
 };
 
 // create a reaction
-export const createAReactionThunk = (reactionBody) => async (dispatch) => {
+export const createAReactionThunk = (emojiBody) => async (dispatch) => {
     try{
-        const {channel_message_id} = reactionBody;
-        // const {emoji, channel_message_id, user_id} = reactionBody
-        console.log(reactionBody.emoji);
+         
+
+        const {channel_message_id} = emojiBody;
         // console.log(message, "ayo?")
         const options = {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(reactionBody)
+            body: JSON.stringify(emojiBody)
         }
 
         const response = await fetch(`/api/channel_message/${channel_message_id}/reaction`, options);
@@ -67,15 +67,20 @@ export const createAReactionThunk = (reactionBody) => async (dispatch) => {
 
 // delete a reaction 
 
-export const deleteReactionThunk = (serverId, channelId, messageId, reactionId) => async (dispatch) => {
-        const options = {
-            method: "DELETE",
-        }
-    const reponse = await fetch(`/api/channel_message/${messageId}/reaction/${reactionId}`, options);
+export const deleteReactionThunk = (reaction_id, channel_message_id) => async (dispatch) => {
+    try {
+    console.log('this is how we:', reaction_id)
+    const response = await fetch(`/api/channel_message/${channel_message_id}/reaction`, {
+    method: "DELETE",
+    });
     if (response.ok) {
-        dispatch(deleteReaction(reactionId));
+        
+        dispatch(deleteAReactionAction(reaction_id));
     }
+} catch (e){
+    console.log(e)
 }
+};
 
 // -- REDUCER --
 
@@ -88,9 +93,12 @@ const initialState = {
     let newState;
     let newById = {...state.byId};
     let newAllReactions = [...state.allReactions];
+    let reactionArr;
+    let newReaction;
+    let newReactionId;
     switch(action.type) {
         case GET_ALL_REACTIONS:
-            const reactionArr = action.payload;
+            reactionArr = action.payload;
             // console.log("before", messageArr)
             newState = { ...state };
             newState.allReactions = reactionArr;
@@ -101,9 +109,9 @@ const initialState = {
             return newState;
         case CREATE_A_REACTION:
             newState = {...state};
-            const newReaction = action.payload;
-            const newReactionId = newReaction.id;
-            // update byId and allServers
+            newReaction = action.payload;
+            newReactionId = newReaction.id;
+            // update byId and allReactions
             newById[newReactionId] = newReaction;
             newState.byId = newById;
             newState.allReactions = [...newAllReactions, newReaction];

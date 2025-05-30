@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Reactions.css";
-import { createAReactionThunk, getAllReactionsThunk } from "../../redux/reactions";
+import { createAReactionThunk, deleteReactionThunk, getAllReactionsThunk } from "../../redux/reactions";
 
 function Reactions_Modal({messageId}) {
   const dispatch = useDispatch();
 //   const { channelId } = useParams();
-  const messageReactions = useSelector((state) => state.reactions.allReactions);
+  const seemojis = useSelector((state) => state.reactions.allReactions);
   const sessionUser = useSelector((state) => state.session.user);
 //   const userId = sessionUser.id;
 //   const reactionCheck = userId === messageReactions.userId && messageId === messageReactions.messageId 
@@ -24,32 +24,37 @@ function Reactions_Modal({messageId}) {
     if (!isLoaded) {
       getThunks();
       setIsLoaded(true);
-    } else {
-    }
-  }, [dispatch, messageReactions]);
+    } 
+  }, [dispatch, isLoaded, messageId]);
 
 
   const emojiArray = ["😜", "😂", "😉", "🤣", "🤪", "😜", "🥴", "🤤", "🔥"];
   // const messageReactionsDummy = [{ id=1, emoji="😉", channel_message_id=1, user_id=1 }]
 
-  const reactionBody = {
+
+ 
+  const emojiBody = {
     emoji: emoji,
     channel_message_id: messageId,
     user_id: sessionUser.id
-  };
-  console.log(reactionBody);
+  }
 
-  const addReaction = async (e, emoji) => {
-    e.preventDefault();
+
+ const toggleReaction = async (e, emoji) => {
+  e.preventDefault();
     setEmoji(emoji);
-    if (sessionUser.id) {
-    //   setHasReacted;
+    const emojiMatch = seemojis.find(seemoji => seemoji.emoji === emoji);
+    if (!emojiMatch) {
       setEmoji;
-      dispatch(createAReactionThunk(reactionBody));
+      dispatch(createAReactionThunk(emojiBody));
     } else {
-      
-    }
-  };
+      dispatch(deleteReactionThunk(messageId, emojiMatch.id))
+      dispatch(getAllReactionsThunk(messageId));
+  }
+   }
+
+
+
 
   if (!isLoaded) {
     return <h1>Loading. . . </h1>
@@ -57,20 +62,39 @@ function Reactions_Modal({messageId}) {
 
   return (
     <>
-      <h1>Reactions go below</h1>
+      
       {/* this card should show all the reactions given per message /}
             <div className="emoji-display-card">
                 {messageReactionsDummy.map}
             </div>
             {/ this card should show all the clickable reactions */}
+
+
+
+
+
+    
+        <ul className="seemoji-list">
+            {seemojis.map((seemoji, idx) => (
+              
+               
+              <li className="seemojis" key={`${idx}-${seemoji.id}`}>
+                {seemoji.emoji}
+              </li>
+            ))}     
+      </ul>
+        
+        
+             
       <div className="emoji-create-card">
         {emojiArray.map((emoji, idx) => (
-          <div>
+          <div key={idx}>
             <button
+              
               onClick={(e) => {
-                addReaction(e, emoji);
+                toggleReaction(e, emoji);
               }}
-              key={idx}
+              
             >
               {emoji}
             </button>
