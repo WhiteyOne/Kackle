@@ -72,15 +72,16 @@ export const createAServerThunk = (server) => async (dispatch) => {
 };
 
 export const deleteAServerThunk = (serverId) => async (dispatch) => {
+    const options = {
+        method: "DELETE",
+    }
     
-        const options = {
-            method: "DELETE",
-            headers: {'Content-Type': 'application/json'},
-        }
-
-        const response = await fetch(`/api/server/${serverId}`, options);
-        if (response.ok) {
-            dispatch(deleteAServerAction(serverId));
+    const response = await fetch(`/api/server/${serverId}/hmm`, options);
+    
+    if (response.ok) {
+        console.log("82 of selete server😜", serverId)
+        console.log(response)
+            dispatch(deleteAServerAction(serverId, options));
         }else {
             throw response;
         }
@@ -98,7 +99,7 @@ export const getOneServerThunk = (serverId) => async (dispatch) => {
         }
     } 
 
-export const updateServerThunk = (serverId, server) => async (dispatch) => {
+export const updateServerThunk = (server) => async (dispatch) => {
 
         const options = {
             method: "PUT",
@@ -106,7 +107,7 @@ export const updateServerThunk = (serverId, server) => async (dispatch) => {
             body: JSON.stringify(server)
         }
 
-        const response = await fetch(`/api/server/${serverId}`, options);
+        const response = await fetch(`/api/server/${server.id}`, options);
         if (response.ok) {
             const data = await response.json();
             dispatch(updateServerAction(data));
