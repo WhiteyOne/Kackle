@@ -56,7 +56,7 @@ function CreateChannelModal({ serverId, onClose }) {
     setErrors({});
     closeModal();
     if (newChannel && newChannel.id) {
-      navigate(`/server/${serverId}/channel/${newChannel.id}`);
+      navigate(`/servers/${serverId}/channel/${newChannel.id}`);
     } else {
       await dispatch(allChannelsByServer(serverId));
     }

@@ -14,6 +14,7 @@ const DeleteServerModal = ({ serverId, onClose }) => {
         try {
             dispatch(deleteAServerThunk(serverId));
             closeModal();
+            navigate('/servers');
             console.log('14 handle Delete for DeleteServerModal', id)
             
         } catch (error) {

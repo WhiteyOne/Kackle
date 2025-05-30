@@ -115,6 +115,10 @@ function GetMessages() {
     };
   }, [chatroom, user]);
 
+  if (!channel) {
+    return <div>Loading channel...</div>;
+  }
+
   return (
     <div className="pageContainer">
       <h1>{channel.name}</h1>
