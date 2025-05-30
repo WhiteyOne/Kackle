@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal'; 
 import './DeleteChannelModal.css';
 
-const DeleteChannelModal = ({ serverId, channelId, onClose }) => {      
+const DeleteChannelModal = ({ serverId, channelId }) => {      
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { closeModal } = useModal();

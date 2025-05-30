@@ -3,7 +3,7 @@ const inDevelopment = import.meta.env.MODE === "development";
 let urlToUse;
 
 if (inDevelopment) {
-  urlToUse = "ws://localhost:8000";
+  urlToUse = "ws://localhost:5000";
 } else {
   urlToUse = "wss://kackle.onrender.com";
 }

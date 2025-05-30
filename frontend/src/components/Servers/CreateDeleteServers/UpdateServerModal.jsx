@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+
 import { updateServerThunk } from "../../../redux/servers";
 import { useModal } from "../../../context/Modal";
 
 
-function UpdateServerModal({ serverId }) {
+function UpdateServerModal() {
     const dispatch = useDispatch();
     // const navigate = useNavigate();
     const { closeModal } = useModal();

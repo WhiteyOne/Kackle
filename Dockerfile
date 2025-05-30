@@ -43,7 +43,7 @@ COPY ./bin ./bin
 
 RUN pip install psycopg2[binary]
 
-EXPOSE 8000
+EXPOSE 5000
 
 CMD ["bash", "./bin/start.sh"]
 # CMD gunicorn --worker-class eventlet -w 1 app:app
