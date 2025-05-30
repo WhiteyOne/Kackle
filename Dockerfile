@@ -16,7 +16,6 @@ FROM --platform=amd64 python:3.9
 
 WORKDIR /var/www
 
-RUN pip install psycopg2[binary]
 
 # ---- env
 ENV FLASK_APP=app
@@ -42,7 +41,9 @@ COPY ./backend ./backend
 COPY --from=frontend /frontend/dist ./frontend/dist
 COPY ./bin ./bin
 
+RUN pip install psycopg2[binary]
 
 EXPOSE 8000
 
 CMD ["bash", "./bin/start.sh"]
+# CMD gunicorn --worker-class eventlet -w 1 app:app

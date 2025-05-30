@@ -3,7 +3,7 @@ const REMOVE_USER = 'session/removeUser';
 
 const setUser = (user) => ({
   type: SET_USER,
-  payload: user
+  payload: user 
 });
 
 const removeUser = () => ({
@@ -41,10 +41,17 @@ export const thunkLogin = (credentials) => async dispatch => {
 };
 
 export const thunkSignup = (user) => async (dispatch) => {
+   const { username, first_name, last_name, email, password } = user;
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
+     body: JSON.stringify({
+      username,
+      first_name,
+      last_name,
+      email,
+      password
+    })
   });
 
   if(response.ok) {

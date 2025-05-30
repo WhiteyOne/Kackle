@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { thunkLogin } from "../../redux/session";
+import { thunkLogin } from "../../../redux/session";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
+import { useModal } from "../../../context/Modal";
 import "./LoginForm.css";
+import { NavLink } from "react-router-dom";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        <NavLink to="/servers"><button type="submit">Log In</button></NavLink>
       </form>
     </>
   );

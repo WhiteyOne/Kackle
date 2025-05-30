@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
@@ -7,13 +8,18 @@ function SignupFormPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,34 +36,52 @@ function SignupFormPage() {
         email,
         username,
         password,
+
+        first_name,
+        last_name
+
       })
     );
 
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+
       navigate("/");
+
+
     }
   };
 
   return (
     <>
-      <h1>Sign Up</h1>
+
+     <div className="login-wrapper">
+      <div className="title-style">Kackle</div>
+      <div className="form-text">Sign Up</div>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="login-item">
+        <label className="form-text">
           Email
           <input
+            className="form-box"
+
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
+
+        <div className="login-item">
         {errors.email && <p>{errors.email}</p>}
-        <label>
+        </div>
+        <label className="form-text">
           Username
           <input
+            className="form-box"
+
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -65,9 +89,14 @@ function SignupFormPage() {
           />
         </label>
         {errors.username && <p>{errors.username}</p>}
-        <label>
+
+        </div>
+        <div className="login-item">
+        <label className="form-text">
           Password
           <input
+            className="form-box"
+
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -75,20 +104,62 @@ function SignupFormPage() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <label>
+
+        </div>
+         <div className="login-item">
+        <label className="form-text">
           Confirm Password
           <input
+            className="form-box"
+
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
+
+        </div>
+        <div className="login-item">
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+         <div className="login-item">
+        <label className="form-text">
+          First Name
+          <input
+            className="form-box"
+            type="first name"
+            value={first_name}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
+        {errors.firstName && <p>{errors.firstName}</p>}
+        </div>
+         <div className="login-item">
+        <label className="form-text">
+          Last Name
+          <input
+            className="form-box"
+            type="last name"
+            value={last_name}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
+        </div>
+        </div>
+        <div className="login-item">
+        {errors.lastName && <p>{errors.lastName}</p>}
+        <button type="submit" className="login-button">Sign Up</button>
+        </div>
       </form>
+            </div>
+
     </>
   );
 }
 
+
 export default SignupFormPage;
+
+

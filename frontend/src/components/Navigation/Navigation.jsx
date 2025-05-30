@@ -1,19 +1,32 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import CreateServerModal from "../Servers/CreateDeleteServers/CreateServerModal/CreateServerModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import "./Navigation.css";
 
 function Navigation() {
-  return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+  const user = useSelector((store) => store.session.user);
 
-      <li>
+  if(user){
+
+  return (
+    <div className="navbar">
+      <div className="login-button">
         <ProfileButton />
-      </li>
-    </ul>
+      </div>
+      <div>
+        <NavLink to="/servers"><button className="servers-button">Servers</button></NavLink>
+      </div>
+      <div className="create-server-modal">
+        <OpenModalButton
+          buttonText="Create Server"
+          modalComponent={<CreateServerModal />}
+        />
+      </div>
+    </div>
   );
+}
 }
 
 export default Navigation;
