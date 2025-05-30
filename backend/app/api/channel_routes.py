@@ -118,6 +118,7 @@ def update_channel(server_id, channel_id):
 @channel_routes.route("<int:server_id>/channel/<int:channel_id>", methods=["DELETE"])
 @login_required
 def delete_channel(server_id, channel_id):
+    print("here")
     server = Server.query.get(server_id)
     if not server:
         return jsonify({"error: Server not found"}), 404
