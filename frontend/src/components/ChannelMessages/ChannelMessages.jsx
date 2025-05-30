@@ -1,9 +1,10 @@
-import { useSelector } from "react-redux";
+simport { useSelector } from "react-redux";
 import "./ChannelMessages.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { io } from "socket.io-client";
 import { urlToUse } from "../../config";
+import Reactions_Modal from "../Reactions/Reactions";
 
 let socket;
 function GetMessages() {
@@ -115,9 +116,11 @@ function GetMessages() {
     };
   }, [chatroom, user]);
 
+
   if (!channel) {
     return <div>Loading channel...</div>;
   }
+
 
   return (
     <div className="pageContainer">
@@ -148,11 +151,16 @@ function GetMessages() {
                   <p className="msg">{message.msg}</p>
                   <p className="msg-user">{message.user}</p>
                   {user.username === message.user && (
-                    <div className="message-controls">
+                  
+                  <div className="message-controls">
+                  <h1>{`${message.id} - ${id}`}</h1>
                       <button onClick={() => openEdit(message)}>Edit</button>
                       <button onClick={() => openDelete(message.id)}>
                         Delete
                       </button>
+                      <div>
+                        <Reactions_Modal messageId={message.id} />
+                      </div>
                     </div>
                   )}
                 </>
@@ -168,9 +176,7 @@ function GetMessages() {
             </div>
           ))
         ) : (
-          <h2>
-            Not Connected!
-          </h2>
+          <h2>Not Connected!</h2>
         )}
       </div>
       <div

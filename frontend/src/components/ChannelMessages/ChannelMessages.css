@@ -1,11 +1,14 @@
-#pageContainer{
-    display: 'flex';
-    justify-Content: 'center';
-    flex-Direction: 'column';
-    align-Content: 'center';
-}
+/* .message-container {
+display:flex;
+flex-direction: column;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+} */
 
-#connectButtons{
+.
+
+/* #connectButtons{
     display: 'flex';
     flex-Direction: 'row';
     justify-Content: 'center';
@@ -21,4 +24,4 @@
         margin-Top: '10px';
         padding: '3px';
         padding-Left: '10px';
-}
+} */

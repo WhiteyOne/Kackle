@@ -1,0 +1,10 @@
+.emojis {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+
+.seemojis {
+    list-style-type: none;
+}
