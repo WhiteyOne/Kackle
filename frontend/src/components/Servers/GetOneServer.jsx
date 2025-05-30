@@ -19,7 +19,6 @@ function GetOneServer() {
 
     
     useEffect(() => {
-        console.log("getOneServer useEffect triggered");
             dispatch(getOneServerThunk(serverId));
             dispatch(allChannelsByServer(serverId));
         
