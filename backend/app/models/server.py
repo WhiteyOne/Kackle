@@ -10,23 +10,12 @@ class Server(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private = db.Column(db.Boolean, nullable=False)
-    # admin = db.Column(ARRAY(db.String))
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey(add_prefix_for_prod("users.id")),
-        nullable=False,
-=======
-=======
+
     owner_id = db.Column(
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False
     )
->>>>>>> refs/remotes/origin/staging
     user_servers = db.relationship(
         "User", secondary=user_server, back_populates="server_users"
->>>>>>> refs/remotes/origin/staging
     )
     # one to many
     server_owner = db.relationship("User", back_populates="user_owner")
