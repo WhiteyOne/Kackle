@@ -44,7 +44,7 @@ def create_channel(server_id):
         return (
             jsonify(
                 {
-                    "error: A channel with this name already exisys. Try a different joke."
+                    "error: A channel with this name already exists. Try a different joke."
                 }
             ),
             400,
@@ -90,7 +90,7 @@ def get_one_channel(server_id, channel_id):
 
 
 # Update Channel
-@channel_routes.route("<int:server_id>/channel/<int:channel_id>", methods=["PUT"])
+@channel_routes.route("/<int:server_id>/channel/<int:channel_id>", methods=["PUT"])
 @login_required
 def update_channel(server_id, channel_id):
     server = Server.query.get(server_id)
@@ -104,6 +104,7 @@ def update_channel(server_id, channel_id):
         )
 
     data = request.get_json()
+
     channel = Channel.query.get(channel_id)
     if not channel:
         return jsonify({"error: Channel not found"}), 404
@@ -133,4 +134,4 @@ def delete_channel(server_id, channel_id):
 
     db.session.delete(channel)
     db.session.commit()
-    return jsonify({"message": "Channel deleted successfully"}.to_dict()), 200
+    return jsonify({"message": "Channel deleted successfully"}), 200

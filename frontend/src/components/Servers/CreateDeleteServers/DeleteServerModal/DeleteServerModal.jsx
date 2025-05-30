@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../../../context/Modal';
 import './DeleteServerModal.css';
-import { deleteAServerThunk, getAllServersThunk } from '../../../../redux/servers';
+import { deleteAServerThunk } from '../../../../redux/servers';
 
 const DeleteServerModal = ({ serverId }) => {
     const dispatch = useDispatch();
@@ -26,12 +26,12 @@ const DeleteServerModal = ({ serverId }) => {
             dispatch(deleteAServerThunk(serverId));
             closeModal();
             navigate('/servers');
-            console.log('14 handle Delete for DeleteServerModal', id)
+            
         } catch (error) {
             
         }
-        // dispatch(getAllServersThunk());
-        navigate('/servers');
+
+        
     };
 
     return (
