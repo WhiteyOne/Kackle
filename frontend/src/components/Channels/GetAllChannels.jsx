@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allChannelsByServer } from "../../redux/channels";
 import { NavLink, useParams } from "react-router-dom";
-import { updateChannelThunk } from "../../redux/channels";
+import UpdateChannelModal from "./UpdateChannelModal";
 import CreateChannelModal from "../Channels/CreateChannelModal";
 import DeleteChannelModal from "./DeleteChannelModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
@@ -54,12 +54,15 @@ function GetAllChannels() {
                   }
                 />
                 </div>
-                <button
-                  className="update-channel-button"
-                  onClick={() => dispatch(updateChannelThunk(channel.id))}
-                >
-                  Edit
-                </button>
+             <OpenModalButton
+             buttonText="Edit"
+             modalComponent={
+               <UpdateChannelModal
+                 serverId={serverId}
+                 channel={channel}
+               />
+              }
+               />
               </li>
             ))}
           </ul>

@@ -15,7 +15,7 @@ from .seeds import seed_commands
 from .config import Config
 # from .api.channel_routes import channel_routes
 from app.socket import socket
-from .api.messages_routes import messages_routes
+# from .api.messages_routes import messages_routes
 
 from .api.delete_server import delete_server
 # from .routes.server import bp as server
@@ -35,7 +35,7 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(messages_routes, url_prefix="/api/server")
+# app.register_blueprint(messages_routes, url_prefix="/api/server")
 # app.register_blueprint(channel_routes, url_prefix="/api")
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")

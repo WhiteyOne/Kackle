@@ -116,7 +116,13 @@ function GetMessages() {
     };
   }, [chatroom, user]);
 
+<<<<<<< HEAD
   
+=======
+  if (!channel) {
+    return <div>Loading channel...</div>;
+  }
+>>>>>>> 2bba975c880c979e4c31ae5a1652fd3dd72c5332
 
   return (
     <div className="pageContainer">

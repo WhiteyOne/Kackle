@@ -72,23 +72,24 @@ export const createAServerThunk = (server) => async (dispatch) => {
 };
 
 export const deleteAServerThunk = (serverId) => async (dispatch) => {
+    const options = {
+        method: "DELETE",
+    }
     
-        const options = {
-            method: "DELETE",
-            headers: {'Content-Type': 'application/json'},
-        }
-
-        const response = await fetch(`/api/server/${serverId}`, options);
-        if (response.ok) {
-            dispatch(deleteAServerAction(serverId));
+    const response = await fetch(`/api/server/${serverId}/hmm`, options);
+    
+    if (response.ok) {
+        console.log("82 of selete server😜", serverId)
+        console.log(response)
+            dispatch(deleteAServerAction(serverId, options));
         }else {
             throw response;
         }
 };
 
 export const getOneServerThunk = (serverId) => async (dispatch) => {
-
         const response = await fetch(`/api/server/${serverId}`);
+        console.log("response", response)
         if (response.ok) {
             const data = await response.json();
             dispatch(getOneServerAction(data));
@@ -98,7 +99,7 @@ export const getOneServerThunk = (serverId) => async (dispatch) => {
         }
     } 
 
-export const updateServerThunk = (serverId, server) => async (dispatch) => {
+export const updateServerThunk = (server) => async (dispatch) => {
 
         const options = {
             method: "PUT",
@@ -106,7 +107,7 @@ export const updateServerThunk = (serverId, server) => async (dispatch) => {
             body: JSON.stringify(server)
         }
 
-        const response = await fetch(`/api/server/${serverId}`, options);
+        const response = await fetch(`/api/server/${server.id}`, options);
         if (response.ok) {
             const data = await response.json();
             dispatch(updateServerAction(data));
@@ -163,6 +164,7 @@ const initialState = {
         case GET_ONE_SERVER: {
             const server = action.payload;
             newState = {...state};
+            const newById = {...state.byId}
             //update byId
             newById[server.id] = server;
             newState.byId = newById;

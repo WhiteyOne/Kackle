@@ -6,7 +6,7 @@ import { allChannelsByServer } from "../../redux/channels";
 import GetAllChannels  from '../Channels/GetAllChannels';
 import DeleteServerModal from "./CreateDeleteServers/DeleteServerModal/DeleteServerModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-
+import UpdateServerModal from "./CreateDeleteServers/UpdateServerModal";
 
 function GetOneServer() {
     const { serverId } = useParams();
@@ -54,6 +54,12 @@ function GetOneServer() {
                     <OpenModalButton
                         buttonText="Delete Server"
                         modalComponent={<DeleteServerModal serverId={server.id} />}
+                    />
+                    </div>
+                    <div className="delete-server-modal">
+                    <OpenModalButton
+                        buttonText="Update Server"
+                        modalComponent={<UpdateServerModal serverId={server.id} />}
                     />
                     </div>
             </div>
