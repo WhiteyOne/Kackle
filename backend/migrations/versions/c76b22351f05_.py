@@ -1,6 +1,10 @@
 """empty message
 
+<<<<<<< HEAD:backend/migrations/versions/20250512_212030_.py
+Revision ID: ffdc0a98111c
+=======
 Revision ID: c76b22351f05
+>>>>>>> refs/remotes/origin/staging:backend/migrations/versions/c76b22351f05_.py
 Revises:
 Create Date: 2025-05-20 00:53:48.235696
 
@@ -15,7 +19,11 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD:backend/migrations/versions/20250512_212030_.py
+revision = "ffdc0a98111c"
+=======
 revision = "c76b22351f05"
+>>>>>>> refs/remotes/origin/staging:backend/migrations/versions/c76b22351f05_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,11 +51,24 @@ def upgrade():
         "servers",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(length=30), nullable=False),
+<<<<<<< HEAD
+<<<<<<< HEAD:backend/migrations/versions/20250512_212030_.py
+        sa.Column("private", sa.Boolean(), nullable=False),
+        # sa.Column("admin", postgresql.ARRAY(sa.String()), nullable=True),
+        sa.Column("user_id", sa.Integer(), nullable=False),
+        sa.ForeignKeyConstraint(
+            ["user_id"],
+            ["users.id"],
+        ),
+=======
+>>>>>>> refs/remotes/origin/staging:backend/migrations/versions/c76b22351f05_.py
+=======
         sa.Column("owner_id", sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(
             ["owner_id"],
             ["users.id"],
         ),
+>>>>>>> refs/remotes/origin/staging
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("name"),
     )
