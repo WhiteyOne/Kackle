@@ -24,7 +24,7 @@ const DeleteChannelModal = ({ serverId, channelId, onClose }) => {
         <div className="delete-server-modal">
             <h2>Are you sure you want to delete this channel?</h2>
             <button onClick={handleDelete}>Delete</button>
-            <button onClick={onClose}>Cancel</button>
+            <button onClick={closeModal}>Cancel</button>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:18 as frontend
+FROM --platform=amd64 node:18 as frontend
 
 
 WORKDIR /frontend
@@ -12,7 +12,7 @@ COPY ./frontend .
 RUN npm run build
 
 # ------ python ------
-FROM --platform=linux/amd64 python:3.9
+FROM --platform=amd64 python:3.9
 
 WORKDIR /var/www
 

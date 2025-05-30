@@ -12,11 +12,14 @@ from .api.delete_server import delete_server
 from .api.channel_routes import channel_routes
 from .seeds import seed_commands
 from .config import Config
+
 # from .api.channel_routes import channel_routes
 from app.socket import socket
+
 # from .api.messages_routes import messages_routes
 
 from .api.delete_server import delete_server
+
 # from .routes.server import bp as server
 app = Flask(__name__, static_folder="../../frontend/dist", static_url_path="/")
 
