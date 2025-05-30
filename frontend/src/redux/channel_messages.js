@@ -20,7 +20,7 @@ export const getAllMessagesThunk = (serverId, channelId) => async (dispatch) => 
     try{
 
         const response = await fetch(`/api/${serverId}/channel/${channelId}/messages` );
-        console.log('what is passed in: ', serverId, channelId)
+        // console.log('what is passed in: ', serverId, channelId)
         if (response.ok) {
             const data = await response.json();
             console.log("where are my messg", data)
