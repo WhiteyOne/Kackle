@@ -5,6 +5,7 @@ import { getChannelThunk } from "../../redux/channels";
 import DeleteChannelModal from "./DeleteChannelModal";
 import GetMessages from "../ChannelMessages/ChannelMessages";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import './GetOneChannel';
 
 function GetOneChannel() {
   const { serverId, channelId } = useParams();
@@ -31,7 +32,7 @@ function GetOneChannel() {
     return <div>Loading channel...</div>;
   }
   return (
-    <div className="single-channel-page">
+    <div className="one-channel-wrapper">
       <div>
         <h3 className="h1">{channel.name}</h3>
       </div>

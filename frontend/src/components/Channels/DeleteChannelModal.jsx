@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { deleteChannelThunk, allChannelsByServer } from '../../redux/channels';
+import { getOneServerThunk } from '../../redux/servers';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/Modal'; 
 import './DeleteChannelModal.css';
@@ -13,8 +14,9 @@ const DeleteChannelModal = ({ serverId, channelId }) => {
         try{
         await dispatch(deleteChannelThunk(serverId, channelId));
         closeModal();
-        navigate(`/servers/${serverId}/channel`);
+        navigate(`/servers/${serverId}`);
         await dispatch(allChannelsByServer());
+        await dispatch(getOneServerThunk(serverId))
         } catch (error) {
             console.log("Failed to delete channel:", error);
         }
