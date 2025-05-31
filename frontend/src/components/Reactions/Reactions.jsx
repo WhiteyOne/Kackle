@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Reactions.css";
 import { createAReactionThunk, deleteReactionThunk, getAllReactionsThunk } from "../../redux/reactions";
+import "./Reactions.css";
 
 function Reactions_Modal({messageId}) {
   const dispatch = useDispatch();

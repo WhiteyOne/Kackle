@@ -15,6 +15,6 @@ flask db upgrade head
 #seed again
 flask seed all
 
-gunicorn --bind 0.0.0.0:8000 app:app
+gunicorn --bind 0.0.0.0:5000 app:app
 
 # CMD gunicorn --worker-class eventlet -w 1 app:app
