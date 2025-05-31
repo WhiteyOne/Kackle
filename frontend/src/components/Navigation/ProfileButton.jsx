@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { FaAngrycreative } from 'react-icons/fa';
+// import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import SignupFormModal from "../Modals/SignupFormModal";
 import LoginFormModal from "../Modals/LoginFormModal"
 import "./ProfileButton.css"
-// import favicon from "../../../public/favicon.ico"
 
 
 function ProfileButton() {
