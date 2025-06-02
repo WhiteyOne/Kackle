@@ -1,12 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginFormPage from '../components/Splash/LoginFormPage';
-import SignupFormPage from '../components/SignupFormPage';
-
 import Layout from './Layout';
+import { GetAllServersPage, GetOneServerPage, LoginFormPage, SignupFormPage } from '../components/Pages';
+import { GetAllChannels, GetOneChannel } from '../components/Channels';
 
-import { GetAllServers, GetOneServer } from '../components/Servers';
-import GetAllChannels from '../components/Channels/GetAllChannels';
-import { GetOneChannel } from '../components/Channels';
+
+
 
 export const router = createBrowserRouter([
   {
@@ -23,11 +21,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/servers",
-        element: <GetAllServers />,
+        element: <GetAllServersPage />,
       },
       {
         path: "/servers/:serverId",
-        element: <GetOneServer/>,
+        element: <GetOneServerPage />,
       },
       {
         path: "/servers/:serverId/channel",

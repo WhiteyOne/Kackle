@@ -4,9 +4,11 @@ import { Provider as ReduxProvider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import configureStore from "./redux/store";
 import { router } from "./router";
-import { Modal, ModalProvider } from "./context/Modal";
+// import { Modal, ModalProvider } from "../components/Modals.Modal";
 import * as sessionActions from "./redux/session";
 import "./index.css";
+import { Modal, ModalProvider } from "./context/Modal";
+
 
 const store = configureStore();
 

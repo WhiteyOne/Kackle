@@ -1,8 +1,14 @@
-import GetOneChannel from "./GetOneChannel";
+import ChannelMessages from "./ChannelMessages";
+import Reactions from "./Reactions";
+
 import GetAllChannels from "./GetAllChannels";
-import DeleteChannelModal from "./DeleteChannelModal";
-import CreateChannelModal from "./CreateChannelModal";
-import GetOneServerChannel from "./Channels";
+import GetOneChannel from "./GetOneChannel";
 
 
-export {GetOneChannel,GetAllChannels,DeleteChannelModal,CreateChannelModal, GetOneServerChannel};
+export { GetOneChannel };
+export { GetAllChannels };
+
+export { ChannelMessages };
+export { Reactions };
+
+

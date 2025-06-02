@@ -95,7 +95,9 @@ export const updateChannelThunk =
   };
 // GetChannel Thunk -------------
 export const getChannelThunk = (serverId, channelId) => async (dispatch) => {
-  const response = await fetch(`/api/server/${serverId}/channel/${channelId}`);
+  const newServerId = parseInt(serverId);
+  console.log('thunk says: ', typeof(serverId), serverId, typeof(channelId), channelId);
+  const response = await fetch(`/api/server/${newServerId}/channel/${channelId}`);
   if (response.ok) {
     const data = await response.json();
     dispatch(getChannel(data));
@@ -105,6 +107,19 @@ export const getChannelThunk = (serverId, channelId) => async (dispatch) => {
     throw response;
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 // GetAllChannelsByServer Reducer -------------
 const initialState = {
   allChannels: {},

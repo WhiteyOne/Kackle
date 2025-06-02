@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allChannelsByServer } from "../../redux/channels";
 import { NavLink, useParams } from "react-router-dom";
-import UpdateChannelModal from "./UpdateChannelModal";
-import CreateChannelModal from "../Channels/CreateChannelModal";
-import DeleteChannelModal from "./DeleteChannelModal";
-import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import "./GetAllChannels.css";
+import UpdateChannelModal from '../Modals/UpdateChannelModal'
+import DeleteChannelModal from "../Modals/DeleteChannelModal";
+import OpenModalButton from "../Modals/OpenModalButton";
+
+
 
 function GetAllChannels() {
   const dispatch = useDispatch();
@@ -28,26 +28,24 @@ function GetAllChannels() {
 
   return (
     <div className="channel-column">
-      <h2>Your Channels</h2>
-      <div className="channels">
-        <div className="create-channel-modal">
-          <OpenModalButton
-          buttonText="Create Channel"
-          modalComponent={<CreateChannelModal serverId={serverId} />}
-          />
-        </div>  
+       <div className="channels">
+        
         <div>
-          <ul className="channel-list">
+          <div className="channel-list">
             {channelsArray.map((channel) => (
-              <li key={channel.id} className="channel-item">
-                <NavLink to={`/servers/${serverId}/channel/${channel.id}`}>
+              <div key={channel.id} className="channel-item">
+                
+                <NavLink className="channel-title" to={`/servers/${serverId}/channel/${channel.id}`}>
                   #{channel.name}
                 </NavLink>
-               <div className="delete-channel-modal">
+                <div className="de-button-wrapper">
+               <div className="delete-edit-buttons">
                 <OpenModalButton
                   buttonText="Delete"
-                  modalComponent={
+                   className="modal-button menu-style"
+                     modalComponent={
                     <DeleteChannelModal
+                      className="modal-button menu-style"
                       serverId={serverId}
                       channelId={channel.id}
                     />
@@ -56,16 +54,18 @@ function GetAllChannels() {
                 </div>
              <OpenModalButton
              buttonText="Edit"
-             modalComponent={
+              className="modal-button menu-style"
+               modalComponent={
                <UpdateChannelModal
                  serverId={serverId}
                  channel={channel}
                />
               }
                />
-              </li>
+               </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </div>
